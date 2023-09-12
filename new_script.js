@@ -300,12 +300,9 @@ function selectUseCase(list) {
 
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
 
-  console.log(usercaseButtons);
-
   // Reset all buttons to the default style by removing specific classes
   usercaseButtons.forEach(button => {
     button.classList.remove('app-launch', 'kitchen-reno', 'daily-habits');
-    console.log(button);
   });
 
   // Based on the list's title, add the appropriate class
@@ -324,6 +321,9 @@ function selectUseCase(list) {
 
   if (targetClass) {
     const button = document.querySelector(`.s23-ucb-${targetClass.charAt(0)}${targetClass.charAt(1)}`);
+
+    console.log(targetClass);
+    console.log(button);
     if (button) {
       button.classList.add(targetClass);
     }
