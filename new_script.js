@@ -297,43 +297,33 @@ fetch('https://ipinfo.io/json')
 
 function selectUseCase(list) {
 
-  function setProperty(element, color) {
-    element.style.setProperty('color', color, 'important');
-    element.style.setProperty('border', `2px solid ${color}`, 'important');
-  }
-
-  function setHoverStyle(selector, color) {
-    const style = document.createElement('style');
-    style.innerHTML = `
-      ${selector}:hover {
-        color: ${color} !important;
-        border: 2px solid ${color} !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
 
+  // Reset all buttons to the default style by removing specific classes
   usercaseButtons.forEach(button => {
-    button.style.setProperty('color', '#72718a');
-    button.style.setProperty('border', '2px solid rgba(108, 108, 158, 0.15)');
+    button.classList.remove('app-launch', 'kitchen-reno', 'daily-habits');
   });
 
-  if (list.title == "App Launch") {
-    const button = document.querySelector('.s23-ucb-1'); 
-    setProperty(button, '#2590F2');
-    setHoverStyle('.s23-ucb-1', '#2590F2');
-  } else if (list.title == "Kitchen Reno") {
-    const button = document.querySelector('.s23-ucb-2'); 
-    setProperty(button, '#F84F39');
-    setHoverStyle('.s23-ucb-2', '#F84F39');
-  } else if (list.title == "Daily Habits") {
-    const button = document.querySelector('.s23-ucb-3'); 
-    setProperty(button, '#2A966F');
-    setHoverStyle('.s23-ucb-3', '#2A966F');
+  // Based on the list's title, add the appropriate class
+  let targetClass = "";
+  switch (list.title) {
+    case "App Launch":
+      targetClass = 'app-launch';
+      break;
+    case "Kitchen Reno":
+      targetClass = 'kitchen-reno';
+      break;
+    case "Daily Habits":
+      targetClass = 'daily-habits';
+      break;
   }
 
+  if (targetClass) {
+    const button = document.querySelector(`.s23-ucb-${targetClass.charAt(0)}${targetClass.charAt(1)}`);
+    if (button) {
+      button.classList.add(targetClass);
+    }
+  }
 }
 
 
