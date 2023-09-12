@@ -712,3 +712,5 @@ function downloadWidget() {
   });
 
 }
+
+downloadWidget();
