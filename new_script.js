@@ -326,13 +326,16 @@ function selectUseCase(list) {
   if (targetClass) {
     const button = document.querySelector(`.s23-ucb-${targetButton}`);
 
-    console.log(button);
     if (button) {
       button.classList.add(targetClass);
     }
   }
 }
 
+// Add class to first item:
+
+const button = document.querySelector(`.s23-ucb-1`);
+button.classList.add('app-launch');
 
 // -------------------------
 // Match each sidebar element to a list
