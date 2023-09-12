@@ -307,22 +307,25 @@ function selectUseCase(list) {
 
   // Based on the list's title, add the appropriate class
   let targetClass = "";
+  let targetButton = "";
   switch (list.title) {
     case "App Launch":
       targetClass = 'app-launch';
+      targetButton = 1;
       break;
     case "Kitchen Reno":
       targetClass = 'kitchen-reno';
+      targetButton = 2;
       break;
     case "Daily Habits":
       targetClass = 'daily-habits';
+      targetButton = 3;
       break;
   }
 
   if (targetClass) {
-    const button = document.querySelector(`.s23-ucb-${targetClass.charAt(0)}${targetClass.charAt(1)}`);
+    const button = document.querySelector(`.s23-ucb-${targetButton}`);
 
-    console.log(targetClass);
     console.log(button);
     if (button) {
       button.classList.add(targetClass);
