@@ -303,6 +303,7 @@ function selectUseCase(list) {
   // Reset all buttons to the default style by removing specific classes
   usercaseButtons.forEach(button => {
     button.classList.remove('app-launch', 'kitchen-reno', 'daily-habits');
+    console.log('this run');
   });
 
   // Based on the list's title, add the appropriate class
