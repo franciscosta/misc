@@ -681,3 +681,34 @@ const svgMarkup = `
 
 superlist_logo.insertAdjacentHTML('beforeend', svgMarkup);
 
+// -------------------------
+// Download widget
+
+function downloadWidget() {
+
+  const expanded = document.querySelector('.s23-expanded-container');
+  const collapsed = document.querySelector('.s23-collapsed-container');
+  const closeButton = document.querySelector('.s23-try-close-button');
+
+  // Initial state
+  function initialState() {
+    expanded.style.width = "0px";
+    collapsed.style.width = "200px";
+    closeButton.style.opacity = '0px';
+  }
+  
+  initialState();
+
+  // Click in collapsed to expand
+  collapsed.addEventListener('click', () => {
+    expanded.style.width = 'auto';
+    collapsed.style.width = '0px';
+    closeButton.style.opacity = '0px';
+  });
+
+  // Click in close button to collapse
+  closeButton.addEventListener('click', () => {
+    initialState();
+  });
+
+}
