@@ -316,8 +316,8 @@ function selectUseCase(list) {
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
 
   usercaseButtons.forEach(button => {
-    button.style.setProperty('color', '#72718a', 'important');
-    button.style.setProperty('border', '2px solid rgba(108, 108, 158, 0.15)', 'important');
+    button.style.setProperty('color', '#72718a');
+    button.style.setProperty('border', '2px solid rgba(108, 108, 158, 0.15)');
   });
 
   if (list.title == "App Launch") {
