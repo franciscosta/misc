@@ -300,10 +300,12 @@ function selectUseCase(list) {
 
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
 
+  console.log(usercaseButtons);
+
   // Reset all buttons to the default style by removing specific classes
   usercaseButtons.forEach(button => {
     button.classList.remove('app-launch', 'kitchen-reno', 'daily-habits');
-    console.log('this run');
+    console.log(button);
   });
 
   // Based on the list's title, add the appropriate class
