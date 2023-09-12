@@ -632,3 +632,43 @@ buttons.forEach(function(button) {
     });
 });
 
+// -------------------------
+// Clicks in header
+
+function generateClick(origin, destination) {
+    
+  function programmaticClick() {
+      return new MouseEvent('click', {
+          'bubbles': true,
+          'cancelable': true,
+          'view': window
+      });
+  }
+  
+  const originElement = document.querySelector(origin);
+  const destinationElement = document.querySelector(destination);
+
+  if (originElement && destinationElement) {
+      originElement.addEventListener('click', () => {
+        destinationElement.dispatchEvent(programmaticClick());
+      });
+  }
+}
+
+generateClick('.s23-ucb-1', '#app-launch-item');
+generateClick('.s23-ucb-2', '#kitchen-reno-item');
+generateClick('.s23-ucb-3', '#daily-habits-item');
+
+// -------------------------
+// Doodle underneath Superlist
+
+const superlist_logo = document.querySelector('#superlist-logo');
+
+const svgMarkup = `
+<svg class="superlist-doodle" viewBox="0 0 301 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.38883 30.696C10.0254 24.0104 20.5139 9.19769 20.8827 14.1207C21.2516 19.0437 15.9502 37.5932 21.0582 34.3226C26.1663 31.052 40.8581 6.84813 42.4963 10.8509C44.1346 14.8537 33.4791 33.3919 37.028 33.1259C40.5768 32.86 58.4661 9.65425 63.3457 9.2886C68.2253 8.92296 49.4489 32.1952 54.3285 31.8296C59.2081 31.4639 75.6436 6.71688 81.977 7.89251C88.3104 9.06814 71.3084 32.2074 74.4136 31.9748C77.5188 31.7421 99.2776 6.59614 105.488 6.13077C111.698 5.66541 89.8168 29.1703 94.6964 28.8047C99.576 28.4391 116.257 6.974 122.912 6.47539C129.566 5.97679 111.553 27.5416 115.989 27.2092C120.425 26.8768 142.997 6.62058 147.753 4.61393C152.51 2.60729 138.17 25.5471 143.049 25.1815C147.929 24.8159 165.497 3.28432 167.272 3.15136C169.046 3.0184 159.585 25.5926 163.134 25.3267C164.503 25.2241 227.395 11.5855 298.4 6.72321" stroke="#6B66DA" stroke-width="4.95595" stroke-linecap="round"/>
+</svg>
+`;
+
+superlist_logo.insertAdjacentHTML('beforeend', svgMarkup);
+
