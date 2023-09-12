@@ -1,0 +1,23 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # adjust this if your default branch is named differently, like "master"
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Add build steps if required, e.g., npm install and npm run build
+
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v19
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}  # set this secret in your GitHub repo settings
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}  # set this secret in your GitHub repo settings
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}  # set this secret in your GitHub repo settings
