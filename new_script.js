@@ -632,14 +632,15 @@ soundifyCheckboxes();
 // -------------------------
 // Sound on click for menu items
 
-const buttons = document.querySelectorAll('.withsound');
+// const buttons = document.querySelectorAll('.withsound');
 
-buttons.forEach(function(button) {
-  button.addEventListener('mouseover', function() {
-      let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
-      sound.play();
-  });
-});
+// buttons.forEach(function(button) {
+//     button.addEventListener('click', function() {
+//         let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
+//         sound.play();
+//     });
+// });
+
 
 // -------------------------
 // Clicks in header
