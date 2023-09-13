@@ -524,10 +524,8 @@ function createTaskElement(text, completed, metadataBool, image2 = null, image3 
         alt: ''
     });
     const contentContainer = createElementWithAttributes('div', { class: 's23-v2-task-content-container' });
-    const textWrapper = createElementWithAttributes('div', { class: 's23-task-text-wrapper' });
+    const textWrapper = createElementWithAttributes('div', { class: 's23-task-text-wrapper s23-in-app-text ellipsis' });
     textWrapper.textContent = text;
-    textWrapper.classList.add('s23-in-app-text');
-    textWrapper.classList.add('ellipsis');
     const taskCompleted = createElementWithAttributes('div', { class: `s23-app-task-completed` });
     const completedStroke = createElementWithAttributes('div', { class: 's23-app-completed-stroke' });
     const v2Metadata = createElementWithAttributes('div', { class: 's23-v2-metadata' });
