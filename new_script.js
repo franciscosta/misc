@@ -605,38 +605,26 @@ function soundifyCheckboxes() {
   
     checkbox.addEventListener('click', function(e) {
     
-    checkbox.addEventListener('click', function(e) {
-      handleCheckboxClick(e, sounds);
-    });
+      let parentTask = e.currentTarget.closest('.s23-v2-task');
+      if (parentTask) {
+      
+        console.log('Found the parent');
 
-    checkbox.addEventListener('mouseover', function() {
+        let check = parentTask.querySelector('.s23-app-checkbox');
+        let stokethrough = parentTask.querySelector('.s23-app-task-completed');
+        let text = parentTask.querySelector('.s23-task-text-wrapper');
+  
+        if (check) check.classList.toggle('check-active');
+        if (stokethrough) stokethrough.classList.toggle('strokethrough-active');
+        if (text) text.classList.toggle('text-active');
+      }
+      
       let sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
       sound.play();
-    });
       
     });
   });
-}
-
-function handleCheckboxClick(e, sounds) {
-
-  let parentTask = e.currentTarget.closest('.s23-v2-task');
-  if (parentTask) {
-      
-    console.log('Found the parent');
-
-    let check = parentTask.querySelector('.s23-app-checkbox');
-    let stokethrough = parentTask.querySelector('.s23-app-task-completed');
-    let text = parentTask.querySelector('.s23-task-text-wrapper');
   
-    if (check) check.classList.toggle('check-active');
-    if (stokethrough) stokethrough.classList.toggle('strokethrough-active');
-    if (text) text.classList.toggle('text-active');
-  }
-      
-  let sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
-  sound.play();
-
 }
 
 soundifyCheckboxes();
