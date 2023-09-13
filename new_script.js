@@ -202,7 +202,7 @@ const listsContent = [
     },
     {
       type: "task",
-      text: "Shinrin-yoku — Forrest Bathing",
+      text: "Shinrin-yoku",
       completed: true,
       metadata: false,
       image2: null,
