@@ -492,7 +492,7 @@ function createParagraphElement(text) {
 
     // Create the text block div with the class attributes
     const textBlock = document.createElement('div');
-    textBlock.className = 'text-block-10';
+    textBlock.className = 's23-in-app-text';
     textBlock.textContent = text;
 
     // Append the text block to the main div
@@ -526,7 +526,8 @@ function createTaskElement(text, completed, metadataBool, image2 = null, image3 
     const contentContainer = createElementWithAttributes('div', { class: 's23-v2-task-content-container' });
     const textWrapper = createElementWithAttributes('div', { class: 's23-task-text-wrapper' });
     textWrapper.textContent = text;
-    textWrapper.classList.add('text-block-10');
+    textWrapper.classList.add('s23-in-app-text');
+    textWrapper.classList.add('ellipsis');
     const taskCompleted = createElementWithAttributes('div', { class: `s23-app-task-completed` });
     const completedStroke = createElementWithAttributes('div', { class: 's23-app-completed-stroke' });
     const v2Metadata = createElementWithAttributes('div', { class: 's23-v2-metadata' });
