@@ -636,14 +636,8 @@ const buttons = document.querySelectorAll('.withsound');
 
 buttons.forEach(function(button) {
     button.addEventListener('click', function() {
-        if (this.hasAttribute('data-silent-click')) {
-            // It's a programmatic silent click, do not play sound
-            this.removeAttribute('data-silent-click'); // Cleanup the attribute
-        } else {
-            // It's a regular user-initiated click, play the sound
-            let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
-            sound.play();
-        }
+        let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
+        sound.play();
     });
 });
 
