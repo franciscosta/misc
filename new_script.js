@@ -672,15 +672,82 @@ generateClick('.s23-ucb-3', '#daily-habits-item');
 // -------------------------
 // Doodle underneath Superlist
 
-const superlist_logo = document.querySelector('#superlist-logo');
+const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
 
-const svgMarkup = `
-<svg class="superlist-doodle" viewBox="0 0 301 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.38883 30.696C10.0254 24.0104 20.5139 9.19769 20.8827 14.1207C21.2516 19.0437 15.9502 37.5932 21.0582 34.3226C26.1663 31.052 40.8581 6.84813 42.4963 10.8509C44.1346 14.8537 33.4791 33.3919 37.028 33.1259C40.5768 32.86 58.4661 9.65425 63.3457 9.2886C68.2253 8.92296 49.4489 32.1952 54.3285 31.8296C59.2081 31.4639 75.6436 6.71688 81.977 7.89251C88.3104 9.06814 71.3084 32.2074 74.4136 31.9748C77.5188 31.7421 99.2776 6.59614 105.488 6.13077C111.698 5.66541 89.8168 29.1703 94.6964 28.8047C99.576 28.4391 116.257 6.974 122.912 6.47539C129.566 5.97679 111.553 27.5416 115.989 27.2092C120.425 26.8768 142.997 6.62058 147.753 4.61393C152.51 2.60729 138.17 25.5471 143.049 25.1815C147.929 24.8159 165.497 3.28432 167.272 3.15136C169.046 3.0184 159.585 25.5926 163.134 25.3267C164.503 25.2241 227.395 11.5855 298.4 6.72321" stroke="#6B66DA" stroke-width="4.95595" stroke-linecap="round"/>
+const superSvg = `
+<svg class="logo-doodle super-svg" viewBox="0 0 97 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M93.9481 11.584C64.1441 6.26141 4.11538 -2.54504 2.43233 4.8098C0.328525 14.0033 80.7993 2.87431 95 3.84205" stroke="#2590F2" stroke-width="4" stroke-linecap="round"/>
 </svg>
 `;
 
-superlist_logo.insertAdjacentHTML('beforeend', svgMarkup);
+const listSvg = `
+<svg class="logo-doodle list-svg" viewBox="0 0 69 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.50635 15.1493C3.98543 13.5307 10.1131 5.71953 10.2715 4.98064C10.43 4.24174 16.0294 12.6511 16.8218 13.777C17.6141 14.903 21.8401 6.84547 22.8966 5.22694C23.9531 3.6084 26.0132 12.4048 26.8584 13.777C27.7036 15.1493 31.6126 6.00102 32.405 4.98064C33.1974 3.96025 36.1555 12.4048 36.5253 13.39C36.8951 14.3752 40.223 5.68434 40.5928 4.98064C40.9626 4.27693 44.8716 10.8214 45.7696 12.5455C46.6676 14.2696 52.2142 4.66397 52.7424 3.46766C53.2707 2.27135 54.6969 8.92142 55.4893 10.4696C56.2817 12.0178 61.7226 3.29173 62.2508 2.41209C62.7791 1.53245 63.3601 10.3288 67.0579 13.39" stroke="#F84F39" stroke-width="3.33063" stroke-linecap="round"/>
+</svg>
+`;
+
+doodleContainers.forEach(logo => {
+	logo.innerHTML += superSvg + listSvg;
+});
+
+const paths = document.querySelectorAll('.logo-doodle path');
+paths.forEach(path => {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+});
 
 // -------------------------
 // Download widget
+
+
+function downloadWidget() {
+
+  const parent = document.querySelector('.s23-try-superlist-container');
+  const expanded = document.querySelector('.s23-expanded-container');
+  const collapsed = document.querySelector('.s23-collapsed-container');
+  const closeButton = document.querySelector('.s23-try-close-button');
+
+  parent.classList.add('snappy-animation');
+  expanded.classList.add('snappy-animation');
+  collapsed.classList.add('snappy-animation');
+
+  // Initial state
+  function initialState() {
+    expanded.style.width = "0px";
+    collapsed.style.width = "195px";
+    closeButton.style.opacity = '0';
+  }
+  
+  initialState();
+
+  // Click in collapsed to expand
+  function expandWidget() {
+    parent.classList.add('try-superlist-clicked-state');
+    expanded.style.width = 'auto';
+    collapsed.style.width = '0px';
+    closeButton.style.opacity = '1';
+  }
+  
+  collapsed.addEventListener('click', expandWidget);
+
+  // Click in close button to collapse
+  function closeWidget() {
+    initialState();
+    parent.classList.remove('try-superlist-clicked-state');
+  }
+
+  closeButton.addEventListener('click', closeWidget);
+
+  // Handle keyboard events
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeWidget();
+    } else if (event.key === 'd' || event.key === 'D') {
+      expandWidget();
+    }
+  });
+
+}
+
+downloadWidget();
