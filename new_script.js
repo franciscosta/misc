@@ -1009,6 +1009,19 @@ document.addEventListener('mousemove', function(e) {
   updateButtonColor(e)
 });
 
+// 2. Sets the url if mobile
+function setDownloadUrl() {
+
+  const width = window.innerWidth;
+  const button = document.querySelector('.s23-huge-download-link');
+
+  if (width <= 991) {
+    button.href="#thisisadownloadlink"
+  }
+}
+
+setDownloadUrl()
+
 
 // ------------------------- ON SCROLL REVEALS -----------------------------
 // ------------------------- ON SCROLL REVEALS -----------------------------
