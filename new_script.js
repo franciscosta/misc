@@ -734,7 +734,13 @@ function downloadWidget() {
   // Huge download button
 
   const hugeDownload = document.querySelector('.s23-huge-download-link');
-  hugeDownload.addEventListener('click', expandWidget);
+
+  let deviceWidth = window.innerWidth;
+  if (deviceWidth > 991) {
+    hugeDownload.preventDefault()
+    hugeDownload.addEventListener('click', expandWidget);
+  }
+  
 
 
   // Click in close button to collapse
