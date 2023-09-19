@@ -1010,9 +1010,9 @@ document.addEventListener('mousemove', function(e) {
 });
 
 
-// ------------------------- ON SCROLL BEHAVIORS -----------------------------
-// ------------------------- ON SCROLL BEHAVIORS -----------------------------
-// ------------------------- ON SCROLL BEHAVIORS -----------------------------
+// ------------------------- ON SCROLL REVEALS -----------------------------
+// ------------------------- ON SCROLL REVEALS -----------------------------
+// ------------------------- ON SCROLL REVEALS -----------------------------
 
 document.addEventListener('scroll', function() {
 
@@ -1102,83 +1102,3 @@ function hugeDownloadReveal() {
   }
 
 }
-
-
-// document.addEventListener('scroll', function() {
-  
-//   // Dark mode
-//   const darkModeParent = document.querySelector('.s23-dark-mode'); // Added dot for class selector
-//   const darkModeChild = document.querySelector('.s23-video-section'); // Added dot for class selector
-  
-//   if (darkModeParent && darkModeChild) {
-//     let darkModeParentPosition = darkModeParent.getBoundingClientRect().top;
-    
-//     if (darkModeParentPosition <= 0) {
-//       darkModeChild.classList.add('darkModeFullScreen');
-//     } else {
-//       darkModeChild.classList.remove('darkModeFullScreen');
-//     }
-//   }
-  
-//   // First slide
-  
-//   const firstSlide = document.querySelector('.s23-slide-first');
-  
-//   if (firstSlide) {
-//   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
-//     let deviceWidth = window.innerWidth;
-    
-//     let distance = deviceWidth > 480 ? 0 : 150; 
-// 		let width = deviceWidth > 480 ? '95%' : '90%';
-// 		let height = deviceWidth > 480 ? '90vh' : '90vh';
-// 		let borderRadius = deviceWidth > 480 ? '80px' : '40px'
-//     let margintop = deviceWidth > 480 ? '0' : '30px'
-    
-//     if (firstSlidePosition <= distance) {
-//       firstSlide.style.width = width;
-//       firstSlide.style.height = height;
-//       firstSlide.style.borderRadius = borderRadius;
-//       firstSlide.style.marginTop = margintop;
-//     } else {
-//       firstSlide.style.width = '100%';
-//       firstSlide.style.height = '100vh';
-//       firstSlide.style.borderRadius = '0px';
-//       firstSlide.style.marginTop = '0px';
-//     }
-//   }
-  
-//   // Laundry list update
-  
-//   const laundryList = document.querySelector('.s23-laundry-list-container');
-  
-//   if (laundryList) {
-// 	  let distance = laundryList.getBoundingClientRect().top;
-    
-//     if (distance < 150) {
-//     	laundryList.style.backgroundColor = '#20202e';
-//     } else {
-// 	    laundryList.style.backgroundColor = '#181824';
-//     }
-    
-//   }
-  
-//   // Download button
-  
-//   const button = document.querySelector('.s23-huge-download-link');
-  
-//   if (button) {
-//     let rect = button.getBoundingClientRect();
-//     let windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-//     // Calculate how much of the button is visible
-//     let percentVisible = Math.max(0, Math.min(1, (windowHeight - rect.top) / rect.height));
-
-//     // Calculate the width and borderRadius based on how much is visible
-//     let width = 100 - (25 * percentVisible);
-//     let borderRadius = 330 * percentVisible;
-
-//     button.style.width = `${width}%`;
-//     button.style.borderRadius = `${borderRadius}px`;
-//   }
-  
-// });
