@@ -1,5 +1,7 @@
 
 // -------------------------
+// -------------------------
+// -------------------------
 // Static data for each list
 
 const userAvatars = {
@@ -31,25 +33,7 @@ const geoLocatedDreamscapes = {
 };
 
 // -------------------------
-// Pre-load assetes
-
-function preLoadAssets(assets) {
-  const promises = Object.entries(assets).map(([key, value]) => {
-      return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = resolve;
-          img.onerror = reject;
-          img.src = value;
-      });
-  });
-  return Promise.all(promises);
-}
-
-preLoadAssets(userAvatars);
-preLoadAssets(integrationIcons);
-preLoadAssets(dreamscapes);
-preLoadAssets(geoLocatedDreamscapes);
-
+// -------------------------
 // -------------------------
 // List content
 
@@ -279,7 +263,35 @@ const listsContent = [
 ];
 
 // -------------------------
-// Updates Dreamscape based on user location
+// -------------------------
+// -------------------------
+// 1. Pre-load assets to memory
+// Takes in an object of assets and pre-loads each to memory
+
+function preLoadAssets(assets) {
+  const promises = Object.entries(assets).map(([key, value]) => {
+      return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = value;
+      });
+  });
+  return Promise.all(promises);
+}
+
+preLoadAssets(userAvatars);
+preLoadAssets(integrationIcons);
+preLoadAssets(dreamscapes);
+preLoadAssets(geoLocatedDreamscapes);
+
+// -------------------------
+// -------------------------
+// -------------------------
+// 2. Update Dreamscape based on user location
+// getUserLocation() gets the user's location
+// geolocateDreamscape(location) takes in a location object
+// and updates the dreamscape in the first listContent object (above)
 
 async function getUserLocation() {
   try {
@@ -298,7 +310,7 @@ async function getUserLocation() {
   }
 }
 
-function geolocateDreamscape(location) {
+function updateDreamscape(location) {
   if (location.country === "CA") {
       listsContent[0].dreamscape = geoLocatedDreamscapes.Canada;
   } else if (location.country === "DE") {
@@ -313,11 +325,15 @@ function geolocateDreamscape(location) {
   dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
 }
 
-getUserLocation().then(geolocateDreamscape);
+getUserLocation().then(updateDreamscape);
 
 // -------------------------
-// Function gets passed the currently active list
-// It then updates the active state on the matching buttons at the tip
+// -------------------------
+// -------------------------
+// 3. Update "For team work," "Personal projects," "Everything in between"
+// Adds / Removes class to the three buttons at the top of the site
+// The function gets passed the currently active list
+// And based on that list, it updates the active state of the button
 
 function selectUseCase(list) {
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
@@ -347,36 +363,45 @@ function selectUseCase(list) {
 }
 
 // -------------------------
-// On page load, adds the active class to the first button, 
+// -------------------------
+// -------------------------
+// 4. Onload, makes "For team work" active
 
 const button = document.querySelector(`.s23-ucb-1`);
 button.classList.add('app-launch');
 
 // -------------------------
-// Match each sidebar element to a list
+// -------------------------
+// -------------------------
+// 5. Handles the selection of items in the app's sidebar
+// This is responsible for generating the actual list content and selecting the button (above)
+
+function handleListItemClick(item) {
+  const listName = item.querySelector('.s23-list-title-in-sidebar').textContent;
+      
+  // Find the corresponding list in listsContent
+  const matchingList = listsContent.find(list => list.title === listName);
+  
+  // Early exit if no matching list found
+  if (!matchingList) return; 
+
+  generateNewList(matchingList); // Generates a new list
+  deselectAllSidebarItems(); // Deselects all items in sidebar
+  selectUseCase(matchingList); // Selects matching item at the top
+  item.classList.add('s23-sidebar-selected'); // Select the sidebar
+}
+
+function deselectAllSidebarItems() {
+  const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
+  listItems.forEach(item => {
+    item.classList.remove('s23-sidebar-selected');
+  });
+}
 
 const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
-
 listItems.forEach(item => {
   item.addEventListener('click', function() {
-      const listName = this.querySelector('.text-block-9').textContent;
-      
-      // Find the corresponding list in listsContent
-      const matchingList = listsContent.find(list => list.title === listName);
-      
-      if (matchingList) {
-        generateNewList(matchingList);
-
-        // If valid element was clicked, select it
-        listItems.forEach(item => {
-          item.classList.remove('s23-sidebar-selected');
-        });
-            
-        item.classList.add('s23-sidebar-selected');
-
-        selectUseCase(matchingList);
-      }
-
+      handleListItemClick(this);
   });
 });
 
