@@ -1,8 +1,101 @@
 
-// -------------------------
-// -------------------------
-// -------------------------
-// Static data for each list
+
+// ------------------------- DOWNLOAD WIDGET -----------------------------
+// ------------------------- DOWNLOAD WIDGET -----------------------------
+// ------------------------- DOWNLOAD WIDGET -----------------------------
+
+// 1. Handles download widget behavior
+
+function downloadWidget() {
+
+  const parent = document.querySelector('.s23-try-superlist-container');
+  const expanded = document.querySelector('.s23-expanded-container');
+  const collapsed = document.querySelector('.s23-collapsed-container');
+  const closeButton = document.querySelector('.s23-try-close-button');
+  const hugeDownload = document.querySelector('.s23-huge-download-link');
+
+  parent.classList.add('snappy-animation');
+  expanded.classList.add('snappy-animation');
+  collapsed.classList.add('snappy-animation');
+
+  // Sets the initial state on load
+  function initialState() {
+    expanded.style.width = "0px";
+    collapsed.style.width = "195px";
+    closeButton.style.opacity = '0';
+  }
+  
+  initialState();
+
+  // Handles the click on the collapsed state (expands)
+  function expandWidget() {
+    parent.classList.add('try-superlist-clicked-state');
+    expanded.style.width = 'auto';
+    collapsed.style.width = '0px';
+    closeButton.style.opacity = '1';
+  }
+  
+  collapsed.addEventListener('click', expandWidget);
+  hugeDownload.addEventListener('click', expandWidget);
+
+  // Handles click on close button (collapses)
+  function closeWidget() {
+    initialState();
+    parent.classList.remove('try-superlist-clicked-state');
+  }
+
+  closeButton.addEventListener('click', closeWidget);  
+
+  // Handles keyboard events
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeWidget();
+    } else if (event.key === 'd' || event.key === 'D') {
+      expandWidget();
+    }
+  });
+}
+
+downloadWidget();
+
+
+// ------------------------- SUPERLIST LOGO -----------------------------
+// ------------------------- SUPERLIST LOGO -----------------------------
+// ------------------------- SUPERLIST LOGO -----------------------------
+
+// 1. Adds the doodle underneath Superlist
+
+const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
+
+const superSvg = `
+<svg class="logo-doodle super-svg" viewBox="0 0 97 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M93.9481 11.584C64.1441 6.26141 4.11538 -2.54504 2.43233 4.8098C0.328525 14.0033 80.7993 2.87431 95 3.84205" stroke="#2590F2" stroke-width="4" stroke-linecap="round"/>
+</svg>
+`;
+
+const listSvg = `
+<svg class="logo-doodle list-svg" viewBox="0 0 69 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.50635 15.1493C3.98543 13.5307 10.1131 5.71953 10.2715 4.98064C10.43 4.24174 16.0294 12.6511 16.8218 13.777C17.6141 14.903 21.8401 6.84547 22.8966 5.22694C23.9531 3.6084 26.0132 12.4048 26.8584 13.777C27.7036 15.1493 31.6126 6.00102 32.405 4.98064C33.1974 3.96025 36.1555 12.4048 36.5253 13.39C36.8951 14.3752 40.223 5.68434 40.5928 4.98064C40.9626 4.27693 44.8716 10.8214 45.7696 12.5455C46.6676 14.2696 52.2142 4.66397 52.7424 3.46766C53.2707 2.27135 54.6969 8.92142 55.4893 10.4696C56.2817 12.0178 61.7226 3.29173 62.2508 2.41209C62.7791 1.53245 63.3601 10.3288 67.0579 13.39" stroke="#F84F39" stroke-width="3.33063" stroke-linecap="round"/>
+</svg>
+`;
+
+doodleContainers.forEach(logo => {
+	logo.innerHTML += superSvg + listSvg;
+});
+
+const paths = document.querySelectorAll('.logo-doodle path');
+paths.forEach(path => {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+});
+
+
+// ------------------------- SUPERLIST APP -----------------------------
+// ------------------------- SUPERLIST APP -----------------------------
+// ------------------------- SUPERLIST APP -----------------------------
+
+// 0. Static data for each list
 
 const userAvatars = {
   "Private": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fb95bee31ef10f4fff2139_Group%202402.png",
@@ -35,7 +128,7 @@ const geoLocatedDreamscapes = {
 // -------------------------
 // -------------------------
 // -------------------------
-// List content
+// 0. List content
 
 const listsContent = [
   {
@@ -635,7 +728,6 @@ function createTaskElement(text, completed, metadataBool, image2 = null, image3 
     return root;
 }
   
-
 // -------------------------
 // -------------------------
 // -------------------------
@@ -686,20 +778,6 @@ soundifyCheckboxes();
 // -------------------------
 // -------------------------
 // -------------------------
-// 12. Adds sound to all menu items that have the 'withsound' class
-
-// const buttons = document.querySelectorAll('.withsound');
-
-// buttons.forEach(function(button) {
-//     button.addEventListener('click', function() {
-//         let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
-//         sound.play();
-//     });
-// });
-
-// -------------------------
-// -------------------------
-// -------------------------
 // 13. Handles the relationship between buttons in header and list items in app
 // If user clicks the buttons at the top, it generates a programatic click in the app
 
@@ -728,93 +806,105 @@ generateClick('.s23-ucb-2', '#kitchen-reno-item');
 generateClick('.s23-ucb-3', '#daily-habits-item');
 
 
-// -------------------------
-// -------------------------
-// -------------------------
-// 14. Adds the doodle underneath Superlist
+// ------------------------- GENERAL BUTTON SOUND -----------------------------
+// ------------------------- GENERAL BUTTON SOUND -----------------------------
+// ------------------------- GENERAL BUTTON SOUND -----------------------------
 
-const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
+// 1. Adds sound to all menu items that have the 'withsound' class
 
-const superSvg = `
-<svg class="logo-doodle super-svg" viewBox="0 0 97 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M93.9481 11.584C64.1441 6.26141 4.11538 -2.54504 2.43233 4.8098C0.328525 14.0033 80.7993 2.87431 95 3.84205" stroke="#2590F2" stroke-width="4" stroke-linecap="round"/>
-</svg>
-`;
+// const buttons = document.querySelectorAll('.withsound');
 
-const listSvg = `
-<svg class="logo-doodle list-svg" viewBox="0 0 69 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.50635 15.1493C3.98543 13.5307 10.1131 5.71953 10.2715 4.98064C10.43 4.24174 16.0294 12.6511 16.8218 13.777C17.6141 14.903 21.8401 6.84547 22.8966 5.22694C23.9531 3.6084 26.0132 12.4048 26.8584 13.777C27.7036 15.1493 31.6126 6.00102 32.405 4.98064C33.1974 3.96025 36.1555 12.4048 36.5253 13.39C36.8951 14.3752 40.223 5.68434 40.5928 4.98064C40.9626 4.27693 44.8716 10.8214 45.7696 12.5455C46.6676 14.2696 52.2142 4.66397 52.7424 3.46766C53.2707 2.27135 54.6969 8.92142 55.4893 10.4696C56.2817 12.0178 61.7226 3.29173 62.2508 2.41209C62.7791 1.53245 63.3601 10.3288 67.0579 13.39" stroke="#F84F39" stroke-width="3.33063" stroke-linecap="round"/>
-</svg>
-`;
+// buttons.forEach(function(button) {
+//     button.addEventListener('click', function() {
+//         let sound = new Audio('https://res.cloudinary.com/superlist/video/upload/v1694039377/website/2023/sound/dir1-checkbox-on-08_p60hhl.wav');
+//         sound.play();
+//     });
+// });
 
-doodleContainers.forEach(logo => {
-	logo.innerHTML += superSvg + listSvg;
-});
 
-const paths = document.querySelectorAll('.logo-doodle path');
-paths.forEach(path => {
-    const length = path.getTotalLength();
-    path.style.strokeDasharray = `${length}`;
-    path.style.strokeDashoffset = `${length}`;
-});
+// ------------------------- PITCH DECK -----------------------------
+// ------------------------- PITCH DECK -----------------------------
+// ------------------------- PITCH DECK -----------------------------
 
-// -------------------------
-// -------------------------
-// -------------------------
-// 15. Handles download widget behavior
 
-function downloadWidget() {
 
-  const parent = document.querySelector('.s23-try-superlist-container');
-  const expanded = document.querySelector('.s23-expanded-container');
-  const collapsed = document.querySelector('.s23-collapsed-container');
-  const closeButton = document.querySelector('.s23-try-close-button');
-  const hugeDownload = document.querySelector('.s23-huge-download-link');
 
-  parent.classList.add('snappy-animation');
-  expanded.classList.add('snappy-animation');
-  collapsed.classList.add('snappy-animation');
 
-  // Sets the initial state on load
-  function initialState() {
-    expanded.style.width = "0px";
-    collapsed.style.width = "195px";
-    closeButton.style.opacity = '0';
-  }
+
+
+// ------------------------- VIDEO BLOCK -----------------------------
+// ------------------------- VIDEO BLOCK -----------------------------
+// ------------------------- VIDEO BLOCK -----------------------------
+
+// 1. Handles the video block
+// Sets the file based on desktop vs mobile width
+// And adds the video object to the page
+
+function addAutoplayVideo() {
+  const element = document.querySelector(`.s23-video-itself`);
+  let deviceWidth = window.innerWidth;
   
-  initialState();
+  let videoSource = "";
 
-  // Handles the click on the collapsed state (expands)
-  function expandWidget() {
-    parent.classList.add('try-superlist-clicked-state');
-    expanded.style.width = 'auto';
-    collapsed.style.width = '0px';
-    closeButton.style.opacity = '1';
-  }
-  
-  collapsed.addEventListener('click', expandWidget);
-  hugeDownload.addEventListener('click', expandWidget);
-
-  // Handles click on close button (collapses)
-  function closeWidget() {
-    initialState();
-    parent.classList.remove('try-superlist-clicked-state');
+	if (deviceWidth > 480) {
+  	videoSource = "https://res.cloudinary.com/superlist/video/upload/c_scale,w_1800/v1694803219/website/2023/video/CleanShot_2023-09-15_at_11.37.26_hjqtni.mp4"
+  } else {
+  	videoSource = "https://res.cloudinary.com/superlist/video/upload/v1694815451/website/2023/video/RPReplay_Final1694815391_uc52cd.mp4";
   }
 
-  closeButton.addEventListener('click', closeWidget);  
+  const video = `
+    <video autoplay muted loop playsinline class="s23-app-video">
+      <source src="${videoSource}" type="video/mp4">
+    </video>
+  `;
 
-  // Handles keyboard events
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeWidget();
-    } else if (event.key === 'd' || event.key === 'D') {
-      expandWidget();
-    }
+  element.innerHTML += video;
+}
+
+addAutoplayVideo();
+
+// -------------------------
+// -------------------------
+// -------------------------
+// 2. Handles the timeline underneath the video
+// Synchronizes the width of timeline with the video duration
+
+function initGrowingTimeline() {
+  const timeline = document.querySelector('.s23-video-growing-timeline');
+  const video = document.querySelector('.s23-app-video');
+
+  // Function to update the timeline's width
+  const updateTimelineWidth = () => {
+    const videoDuration = video.duration;
+    const currentTime = video.currentTime;
+    const percentagePlayed = (currentTime / videoDuration) * 100;
+
+    // Ensure it doesn't exceed 100%
+    const width = Math.min(percentagePlayed, 100) + '%';
+    timeline.style.width = width;
+  };
+
+  video.addEventListener('play', () => {
+    // When video starts, ensure the timeline grows
+    timeline.style.animation = 'grow 60s linear infinite';
+  });
+
+  video.addEventListener('pause', () => {
+    // When video is paused, remove the growing animation and keep it at its current width
+    timeline.style.animation = 'none';
+  });
+
+  video.addEventListener('timeupdate', updateTimelineWidth);
+
+  timeline.addEventListener('animationiteration', () => {
+    timeline.style.animation = 'none';
+    timeline.style.width = '10%';
+    setTimeout(() => {
+      timeline.style.animation = 'grow 60s linear infinite';
+    }, 350);
   });
 }
 
-downloadWidget();
+initGrowingTimeline();
 
-// -------------------------
-// -------------------------
-// -------------------------
+
