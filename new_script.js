@@ -1,5 +1,4 @@
 
-// Test 321
 // -------------------------
 // Static data for each list
 
@@ -32,12 +31,24 @@ const geoLocatedDreamscapes = {
 };
 
 // -------------------------
-// Pre-load dreamscapes
+// Pre-load assetes
 
-Object.entries(dreamscapes).forEach(([key, value]) => {
-  const img = new Image();
-  img.src = value;
-});
+function preLoadAssets(assets) {
+  const promises = Object.entries(assets).map(([key, value]) => {
+      return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = value;
+      });
+  });
+  return Promise.all(promises);
+}
+
+preLoadAssets(userAvatars);
+preLoadAssets(integrationIcons);
+preLoadAssets(dreamscapes);
+preLoadAssets(geoLocatedDreamscapes);
 
 // -------------------------
 // List content
@@ -267,72 +278,76 @@ const listsContent = [
   ]},
 ];
 
-
 // -------------------------
-// Update Dreamscape based on user location
+// Updates Dreamscape based on user location
 
-fetch('https://ipinfo.io/json')
-.then(response => response.json())
-.then(data => {
+async function getUserLocation() {
+  try {
+    const response = await fetch('https://ipinfo.io/json');
+    const data = await response.json();
+    return {
+      country: data.country,
+      region: data.region
+    };
+  } catch (error) {
+    console.error("Failed to fetch user location:", error);
+    return {
+      country: "",
+      region: ""
+    };
+  }
+}
 
-	const country = data.country;
-  const region = data.region;
-  
-  if (country == "CA") {
-    listsContent[0].dreamscape = geoLocatedDreamscapes.Canada;
-  } else if (country == "DE") {
-    listsContent[0].dreamscape = geoLocatedDreamscapes.Germany;
-  } else if (region == "Washington") {
-	  listsContent[0].dreamscape = geoLocatedDreamscapes.Washington;
-  } else if (region == "California") {
-    listsContent[0].dreamscape = geoLocatedDreamscapes.California;
+function geolocateDreamscape(location) {
+  if (location.country === "CA") {
+      listsContent[0].dreamscape = geoLocatedDreamscapes.Canada;
+  } else if (location.country === "DE") {
+      listsContent[0].dreamscape = geoLocatedDreamscapes.Germany;
+  } else if (location.region === "Washington") {
+      listsContent[0].dreamscape = geoLocatedDreamscapes.Washington;
+  } else if (location.region === "California") {
+      listsContent[0].dreamscape = geoLocatedDreamscapes.California;
   }
 
   const dreamscape = document.querySelector('.s23-dreamscape');
   dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
-  
-});
+}
+
+getUserLocation().then(geolocateDreamscape);
 
 // -------------------------
-// Select element under heading
+// Function gets passed the currently active list
+// It then updates the active state on the matching buttons at the tip
 
 function selectUseCase(list) {
-
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
+  
+  const useCaseMap = {
+    // Indices correspond to the .s23-ucb-x class naming
+    "App Launch": { class: 'app-launch', index: 1 },
+    "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
+    "Daily Habits": { class: 'daily-habits', index: 3 }
+  };
 
-  // Reset all buttons to the default style by removing specific classes
   usercaseButtons.forEach(button => {
-    button.classList.remove('app-launch', 'kitchen-reno', 'daily-habits');
+    for (let key in useCaseMap) {
+      // Reset all buttons to init state
+      button.classList.remove(useCaseMap[key].class);
+    }
   });
 
-  // Based on the list's title, add the appropriate class
-  let targetClass = "";
-  let targetButton = "";
-  switch (list.title) {
-    case "App Launch":
-      targetClass = 'app-launch';
-      targetButton = 1;
-      break;
-    case "Kitchen Reno":
-      targetClass = 'kitchen-reno';
-      targetButton = 2;
-      break;
-    case "Daily Habits":
-      targetClass = 'daily-habits';
-      targetButton = 3;
-      break;
-  }
-
-  if (targetClass) {
-    const button = document.querySelector(`.s23-ucb-${targetButton}`);
-
-    if (button) {
-      button.classList.add(targetClass);
-    }
+  // Get the matching object
+  const useCase = useCaseMap[list.title];
+  
+  if (useCase) {
+    const button = document.querySelector(`.s23-ucb-${useCase.index}`);
+    // Add the class to the matcing button
+    button.classList.add(useCase.class);
   }
 }
 
-// Add class to first item:
+// -------------------------
+// On page load, adds the active class to the first button, 
 
 const button = document.querySelector(`.s23-ucb-1`);
 button.classList.add('app-launch');
