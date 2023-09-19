@@ -423,7 +423,7 @@ getUserLocation().then(updateDreamscape);
 // -------------------------
 // -------------------------
 // -------------------------
-// 3. Update "For team work," "Personal projects," "Everything in between"
+// 3. Handles "For team work," "Personal projects," "Everything in between"
 // Adds / Removes class to the three buttons at the top of the site
 // The function gets passed the currently active list
 // And based on that list, it updates the active state of the button
@@ -458,7 +458,89 @@ function selectUseCase(list) {
 // -------------------------
 // -------------------------
 // -------------------------
-// 4. Onload, makes "For team work" active
+// 4. Automatically cycles through each button every 8 secs
+
+(function() {
+
+  let currentIndex = 0; 
+  let interval;
+  const buttons = document.querySelectorAll('.s23-usecase-button');
+  const pauseElements = document.querySelectorAll('.pause');
+
+  function triggerButtonAction(index) {
+    buttons[index].click();
+  }
+
+  function startTransition() {
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    interval = setInterval(() => {
+      triggerButtonAction(currentIndex);
+      currentIndex = (currentIndex + 1) % buttons.length; 
+    }, 8000);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Start the transition initially.
+    startTransition();
+
+    pauseElements.forEach(pauseElement => {
+      pauseElement.addEventListener('mouseover', () => {
+        clearInterval(interval);
+      });
+
+      pauseElement.addEventListener('mouseout', () => {
+        startTransition();
+      });
+    });
+  });
+
+})();
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const buttons = document.querySelectorAll('.s23-usecase-button');
+//   const pauseElements = document.querySelectorAll('.pause');
+
+//   let currentIndex = 1;
+//   let interval;
+
+//   function startTransition() {
+//     if (interval) {
+//       clearInterval(interval);
+//     }
+
+//     interval = setInterval(() => {
+//       if (currentIndex >= buttons.length) {
+//         currentIndex = 0;
+//       }
+//       buttons[currentIndex].click();
+//       currentIndex++;
+//     }, 8000);
+//   }
+
+//   // Start the transition initially.
+//   startTransition();
+
+//   pauseElements.forEach(pauseElement => {
+//     pauseElement.addEventListener('mouseover', () => {
+//       clearInterval(interval);
+//     });
+
+//     pauseElement.addEventListener('mouseout', () => {
+//       startTransition();
+//     });
+//   });
+// });
+
+
+
+// -------------------------
+// -------------------------
+// -------------------------
+// 5. Onload, makes "For team work" active
 
 const button = document.querySelector(`.s23-ucb-1`);
 button.classList.add('app-launch');
@@ -466,7 +548,7 @@ button.classList.add('app-launch');
 // -------------------------
 // -------------------------
 // -------------------------
-// 5. Handles the selection of items in the app's sidebar
+// 6. Handles the selection of items in the app's sidebar
 // This is responsible for generating the actual list content and selecting the button (above)
 
 function handleListItemClick(item) {
@@ -502,7 +584,7 @@ listItems.forEach(item => {
 // -------------------------
 // -------------------------
 // -------------------------
-// 6. Generate the new list
+// 7. Generate the new list
 
 function generateNewList(contentObject) {
 
@@ -555,7 +637,7 @@ function generateNewList(contentObject) {
 // -------------------------
 // -------------------------
 // -------------------------
-// 7. Generate share block
+// 8. Generate share block
 
 function createShareElement(avatarCount, moreUsersText) {
   
@@ -604,7 +686,7 @@ function createShareElement(avatarCount, moreUsersText) {
 // -------------------------
 // -------------------------
 // -------------------------
-// 8. Generates Title Block
+// 9. Generates Title Block
 
 function createTitleElement(text) {
 
@@ -625,7 +707,7 @@ function createTitleElement(text) {
 // -------------------------
 // -------------------------
 // -------------------------
-// 9. Generate Paragraph Block
+// 10. Generate Paragraph Block
 
 function createParagraphElement(text) {
     // Create the main div with the class attributes
@@ -646,7 +728,7 @@ function createParagraphElement(text) {
 // -------------------------
 // -------------------------
 // -------------------------
-// 10. Generate Task Block
+// 11. Generate Task Block
 
 function createTaskElement(text, completed, metadataBool, image2 = null, image3 = null) {
 
@@ -731,7 +813,7 @@ function createTaskElement(text, completed, metadataBool, image2 = null, image3 
 // -------------------------
 // -------------------------
 // -------------------------
-// 11. Handles task completion behavior
+// 12. Handles task completion behavior
 
 function soundifyCheckboxes() {
 
@@ -840,6 +922,11 @@ generateClick('.s23-ucb-3', '#daily-habits-item');
 // Sets the file based on desktop vs mobile width
 // And adds the video object to the page
 
+const videos = {
+  "desktop": "https://res.cloudinary.com/superlist/video/upload/c_scale,w_1800/v1694803219/website/2023/video/CleanShot_2023-09-15_at_11.37.26_hjqtni.mp4",
+  "mobile": "https://res.cloudinary.com/superlist/video/upload/v1694815451/website/2023/video/RPReplay_Final1694815391_uc52cd.mp4"
+}
+
 function addAutoplayVideo() {
   const element = document.querySelector(`.s23-video-itself`);
   let deviceWidth = window.innerWidth;
@@ -847,9 +934,9 @@ function addAutoplayVideo() {
   let videoSource = "";
 
 	if (deviceWidth > 480) {
-  	videoSource = "https://res.cloudinary.com/superlist/video/upload/c_scale,w_1800/v1694803219/website/2023/video/CleanShot_2023-09-15_at_11.37.26_hjqtni.mp4"
+  	videoSource = videos.desktop;
   } else {
-  	videoSource = "https://res.cloudinary.com/superlist/video/upload/v1694815451/website/2023/video/RPReplay_Final1694815391_uc52cd.mp4";
+  	videoSource = videos.mobile;
   }
 
   const video = `
