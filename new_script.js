@@ -462,7 +462,7 @@ function selectUseCase(list) {
 
 (function() {
 
-  let currentIndex = 0; 
+  let currentIndex = 1; 
   let interval;
   const buttons = document.querySelectorAll('.s23-usecase-button');
   const pauseElements = document.querySelectorAll('.pause');
