@@ -386,6 +386,7 @@ function handleListItemClick(item) {
   if (!matchingList) return; 
 
   generateNewList(matchingList); // Generates a new list
+
   deselectAllSidebarItems(); // Deselects all items in sidebar
   selectUseCase(matchingList); // Selects matching item at the top
   item.classList.add('s23-sidebar-selected'); // Select the sidebar
@@ -406,7 +407,9 @@ listItems.forEach(item => {
 });
 
 // -------------------------
-// List generating function
+// -------------------------
+// -------------------------
+// 6. Generate the new list
 
 function generateNewList(contentObject) {
 
@@ -457,7 +460,9 @@ function generateNewList(contentObject) {
 }
 
 // -------------------------
-// Share Block
+// -------------------------
+// -------------------------
+// 7. Generate share block
 
 function createShareElement(avatarCount, moreUsersText) {
   
@@ -503,11 +508,13 @@ function createShareElement(avatarCount, moreUsersText) {
   return mainDiv;
 }
 
-
 // -------------------------
-// Title Block
+// -------------------------
+// -------------------------
+// 8. Generates Title Block
 
 function createTitleElement(text) {
+
     // Create the main div with the class attributes
     const mainDiv = document.createElement('div');
     mainDiv.className = 's23-app-title-container';
@@ -523,7 +530,9 @@ function createTitleElement(text) {
 }
 
 // -------------------------
-// Paragraph Block
+// -------------------------
+// -------------------------
+// 9. Generate Paragraph Block
 
 function createParagraphElement(text) {
     // Create the main div with the class attributes
@@ -542,9 +551,12 @@ function createParagraphElement(text) {
 }
 
 // -------------------------
-// Task Block
+// -------------------------
+// -------------------------
+// 10. Generate Task Block
 
 function createTaskElement(text, completed, metadataBool, image2 = null, image3 = null) {
+
     const createElementWithAttributes = (tag, attributes) => {
         const element = document.createElement(tag);
         for (const [key, value] of Object.entries(attributes)) {
@@ -625,7 +637,9 @@ function createTaskElement(text, completed, metadataBool, image2 = null, image3 
   
 
 // -------------------------
-// Task completion behavior
+// -------------------------
+// -------------------------
+// 11. Handles task completion behavior
 
 function soundifyCheckboxes() {
 
@@ -670,7 +684,9 @@ function soundifyCheckboxes() {
 soundifyCheckboxes();
 
 // -------------------------
-// Sound on click for menu items
+// -------------------------
+// -------------------------
+// 12. Adds sound to all menu items that have the 'withsound' class
 
 // const buttons = document.querySelectorAll('.withsound');
 
@@ -681,9 +697,11 @@ soundifyCheckboxes();
 //     });
 // });
 
-
 // -------------------------
-// Clicks in header
+// -------------------------
+// -------------------------
+// 13. Handles the relationship between buttons in header and list items in app
+// If user clicks the buttons at the top, it generates a programatic click in the app
 
 function generateClick(origin, destination) {
     
@@ -709,8 +727,11 @@ generateClick('.s23-ucb-1', '#app-launch-item');
 generateClick('.s23-ucb-2', '#kitchen-reno-item');
 generateClick('.s23-ucb-3', '#daily-habits-item');
 
+
 // -------------------------
-// Doodle underneath Superlist
+// -------------------------
+// -------------------------
+// 14. Adds the doodle underneath Superlist
 
 const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
 
@@ -738,8 +759,9 @@ paths.forEach(path => {
 });
 
 // -------------------------
-// Download widget
-
+// -------------------------
+// -------------------------
+// 15. Handles download widget behavior
 
 function downloadWidget() {
 
@@ -747,12 +769,13 @@ function downloadWidget() {
   const expanded = document.querySelector('.s23-expanded-container');
   const collapsed = document.querySelector('.s23-collapsed-container');
   const closeButton = document.querySelector('.s23-try-close-button');
+  const hugeDownload = document.querySelector('.s23-huge-download-link');
 
   parent.classList.add('snappy-animation');
   expanded.classList.add('snappy-animation');
   collapsed.classList.add('snappy-animation');
 
-  // Initial state
+  // Sets the initial state on load
   function initialState() {
     expanded.style.width = "0px";
     collapsed.style.width = "195px";
@@ -761,7 +784,7 @@ function downloadWidget() {
   
   initialState();
 
-  // Click in collapsed to expand
+  // Handles the click on the collapsed state (expands)
   function expandWidget() {
     parent.classList.add('try-superlist-clicked-state');
     expanded.style.width = 'auto';
@@ -770,23 +793,17 @@ function downloadWidget() {
   }
   
   collapsed.addEventListener('click', expandWidget);
-
-  // Huge download button
-
-  const hugeDownload = document.querySelector('.s23-huge-download-link');
-
   hugeDownload.addEventListener('click', expandWidget);
 
-
-  // Click in close button to collapse
+  // Handles click on close button (collapses)
   function closeWidget() {
     initialState();
     parent.classList.remove('try-superlist-clicked-state');
   }
 
-  closeButton.addEventListener('click', closeWidget);
+  closeButton.addEventListener('click', closeWidget);  
 
-  // Handle keyboard events
+  // Handles keyboard events
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closeWidget();
@@ -794,7 +811,10 @@ function downloadWidget() {
       expandWidget();
     }
   });
-
 }
 
 downloadWidget();
+
+// -------------------------
+// -------------------------
+// -------------------------
