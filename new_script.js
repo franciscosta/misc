@@ -731,6 +731,12 @@ function downloadWidget() {
   
   collapsed.addEventListener('click', expandWidget);
 
+  // Huge download button
+
+  const hugeDownload = document.querySelector('.s23-huge-download-link');
+  hugeDownload.addEventListener('click', expandWidget);
+
+
   // Click in close button to collapse
   function closeWidget() {
     initialState();
