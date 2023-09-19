@@ -735,12 +735,7 @@ function downloadWidget() {
 
   const hugeDownload = document.querySelector('.s23-huge-download-link');
 
-  let deviceWidth = window.innerWidth;
-  if (deviceWidth > 991) {
-    hugeDownload.preventDefault()
-    hugeDownload.addEventListener('click', expandWidget);
-  }
-  
+  hugeDownload.addEventListener('click', expandWidget);
 
 
   // Click in close button to collapse
