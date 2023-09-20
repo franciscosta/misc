@@ -1009,6 +1009,9 @@ document.addEventListener('mousemove', function(e) {
   updateButtonColor(e)
 });
 
+// -------------------------
+// -------------------------
+// -------------------------
 // 2. Sets the url if mobile
 function setDownloadUrl() {
 
@@ -1039,6 +1042,7 @@ document.addEventListener('scroll', function() {
 function firstSlideReveal() {
 
   const firstSlide = document.querySelector('.s23-slide-first');
+  const innerSection = firstSlide.querySelector('.s23-pitch-right-1');
   
   if (firstSlide) {
   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
@@ -1055,6 +1059,8 @@ function firstSlideReveal() {
       firstSlide.style.height = height;
       firstSlide.style.borderRadius = borderRadius;
       firstSlide.style.marginTop = margintop;
+
+      innerSection.style.backgroundColor = '#F84F39';
     } else {
       firstSlide.style.width = '100%';
       firstSlide.style.height = '100vh';
