@@ -856,7 +856,7 @@ generateClick('.s23-ucb-3', '#daily-habits-item');
 
 // 1. Slows down the scrollig of the app
 
-function applySlowScroll(selector, multiplier = 0.3) {
+function applyRelativeSlowScroll(selector, multiplier = 0.3) {
   const element = document.querySelector(selector);
 
   if (!element) {
@@ -864,21 +864,10 @@ function applySlowScroll(selector, multiplier = 0.3) {
       return;
   }
 
-  let lastKnownScrollY = 0;
-
-  element.addEventListener('wheel', function(event) {
-      event.preventDefault();
-
-      // Calculates the new scroll position.
-      let newY = lastKnownScrollY - (event.deltaY * multiplier);
-      element.scrollTo({
-          top: newY,
-          behavior: 'smooth'
-      });
-  });
-
-  element.addEventListener('scroll', function() {
-      lastKnownScrollY = element.scrollTop;
+  // When the body is scrolled, adjust the scroll position of the `.app` element.
+  window.addEventListener('scroll', function() {
+      const bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      element.scrollTop = bodyScrollTop * multiplier;
   });
 }
 
