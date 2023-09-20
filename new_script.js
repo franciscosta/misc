@@ -432,7 +432,6 @@ function selectUseCase(list) {
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
   
   const useCaseMap = {
-    // Indices correspond to the .s23-ucb-x class naming
     "App Launch": { class: 'app-launch', index: 1 },
     "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
     "Daily Habits": { class: 'daily-habits', index: 3 }
@@ -440,7 +439,6 @@ function selectUseCase(list) {
 
   usercaseButtons.forEach(button => {
     for (let key in useCaseMap) {
-      // Reset all buttons to init state
       button.classList.remove(useCaseMap[key].class);
     }
   });
@@ -450,7 +448,6 @@ function selectUseCase(list) {
   
   if (useCase) {
     const button = document.querySelector(`.s23-ucb-${useCase.index}`);
-    // Add the class to the matcing button
     button.classList.add(useCase.class);
   }
 }
@@ -483,7 +480,7 @@ function selectUseCase(list) {
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-    // Start the transition initially.
+
     startTransition();
 
     pauseElements.forEach(pauseElement => {
@@ -1031,7 +1028,7 @@ setDownloadUrl()
 
 document.addEventListener('scroll', function() {
 
-  slowerApp();
+  // slowerApp();
   firstSlideReveal();
   darkSectionReveal();
   laundryListReveal();
