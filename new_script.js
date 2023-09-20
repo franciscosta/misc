@@ -1066,6 +1066,8 @@ function firstSlideReveal() {
       firstSlide.style.height = '100vh';
       firstSlide.style.borderRadius = '0px';
       firstSlide.style.marginTop = '0px';
+
+      innerSection.style.backgroundColor = 'transparent';
     }
   }
 }
