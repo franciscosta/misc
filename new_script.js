@@ -1044,7 +1044,7 @@ function slowerApp() {
   var app = document.querySelector('.s23-app');
   var scrolled = window.scrollY;
   
-  var offset = scrolled * 0.3;
+  var offset = scrolled * 0.6;
   app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
 }
 
