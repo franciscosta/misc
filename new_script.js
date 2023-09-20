@@ -850,6 +850,42 @@ generateClick('.s23-ucb-2', '#kitchen-reno-item');
 generateClick('.s23-ucb-3', '#daily-habits-item');
 
 
+// ------------------------- APP SCROLL -----------------------------
+// ------------------------- APP SCROLL -----------------------------
+// ------------------------- APP SCROLL -----------------------------
+
+// 1. Slows down the scrollig of the app
+
+function applySlowScroll(selector, multiplier = 0.3) {
+  const element = document.querySelector(selector);
+
+  if (!element) {
+      console.warn(`Element with selector "${selector}" not found.`);
+      return;
+  }
+
+  let lastKnownScrollY = 0;
+
+  element.addEventListener('wheel', function(event) {
+      event.preventDefault();
+
+      // Calculates the new scroll position.
+      let newY = lastKnownScrollY - (event.deltaY * multiplier);
+      element.scrollTo({
+          top: newY,
+          behavior: 'smooth'
+      });
+  });
+
+  element.addEventListener('scroll', function() {
+      lastKnownScrollY = element.scrollTop;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  applySlowScroll('.s23-app');
+});
+
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
