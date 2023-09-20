@@ -849,32 +849,6 @@ generateClick('.s23-ucb-1', '#app-launch-item');
 generateClick('.s23-ucb-2', '#kitchen-reno-item');
 generateClick('.s23-ucb-3', '#daily-habits-item');
 
-
-// ------------------------- APP SCROLL -----------------------------
-// ------------------------- APP SCROLL -----------------------------
-// ------------------------- APP SCROLL -----------------------------
-
-// 1. Slows down the scrollig of the app
-
-function applyRelativeSlowScroll(selector, multiplier = 0.3) {
-  const element = document.querySelector(selector);
-
-  if (!element) {
-      console.warn(`Element with selector "${selector}" not found.`);
-      return;
-  }
-
-  // When the body is scrolled, adjust the scroll position of the `.app` element.
-  window.addEventListener('scroll', function() {
-      const bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      element.scrollTop = bodyScrollTop * multiplier;
-  });
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  applySlowScroll('.s23-app');
-});
-
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
@@ -1057,12 +1031,22 @@ setDownloadUrl()
 
 document.addEventListener('scroll', function() {
 
+  slowerApp();
   firstSlideReveal();
   darkSectionReveal();
   laundryListReveal();
   hugeDownloadReveal();
 
 });
+
+function slowerApp() {
+
+  var app = document.querySelector('.s23-app');
+  var scrolled = window.scrollY;
+  
+  var offset = scrolled * 0.3;
+  app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
+}
 
 function firstSlideReveal() {
 
