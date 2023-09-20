@@ -1043,6 +1043,7 @@ function firstSlideReveal() {
 
   const firstSlide = document.querySelector('.s23-slide-first');
   const innerSection = firstSlide.querySelector('.s23-pitch-right-1');
+  const innerSectionImage = innerSection.querySelector('.s23-first-image');
   
   if (firstSlide) {
   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
@@ -1061,6 +1062,7 @@ function firstSlideReveal() {
       firstSlide.style.marginTop = margintop;
 
       innerSection.style.backgroundColor = '#F84F39';
+      innerSectionImage.style.opacity = '1';
     } else {
       firstSlide.style.width = '100%';
       firstSlide.style.height = '100vh';
@@ -1068,6 +1070,7 @@ function firstSlideReveal() {
       firstSlide.style.marginTop = '0px';
 
       innerSection.style.backgroundColor = 'transparent';
+      innerSectionImage.style.opacity = '0';
     }
   }
 }
