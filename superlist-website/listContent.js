@@ -309,8 +309,8 @@ function updateDreamscape(location) {
       listsContent[0].dreamscape = geoLocatedDreamscapes.California;
   }
 
-  const dreamscape = document.querySelector('.s23-dreamscape');
-  dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
+  // const dreamscape = document.querySelector('.s23-dreamscape');
+  // dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
 }
 
 getUserLocation().then(updateDreamscape);
