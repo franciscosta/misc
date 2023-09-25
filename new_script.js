@@ -1,359 +1,268 @@
 
 
-// // ------------------------- DOWNLOAD WIDGET -----------------------------
-// // ------------------------- DOWNLOAD WIDGET -----------------------------
-// // ------------------------- DOWNLOAD WIDGET -----------------------------
-
-// // 1. Handles download widget behavior
-
-// function downloadWidget() {
-
-//   const parent = document.querySelector('.s23-try-superlist-container');
-//   const expanded = document.querySelector('.s23-expanded-container');
-//   const collapsed = document.querySelector('.s23-collapsed-container');
-//   const closeButton = document.querySelector('.s23-try-close-button');
-//   const hugeDownload = document.querySelector('.s23-huge-download-link');
-
-//   parent.classList.add('snappy-animation');
-//   expanded.classList.add('snappy-animation');
-//   collapsed.classList.add('snappy-animation');
-
-//   // Sets the initial state on load
-//   function initialState() {
-//     expanded.style.width = "0px";
-//     collapsed.style.width = "195px";
-//     closeButton.style.opacity = '0';
-//   }
-  
-//   initialState();
-
-//   // Handles the click on the collapsed state (expands)
-//   function expandWidget() {
-//     parent.classList.add('try-superlist-clicked-state');
-//     expanded.style.width = 'auto';
-//     collapsed.style.width = '0px';
-//     closeButton.style.opacity = '1';
-//   }
-  
-//   collapsed.addEventListener('click', expandWidget);
-//   hugeDownload.addEventListener('click', expandWidget);
-
-//   // Handles click on close button (collapses)
-//   function closeWidget() {
-//     initialState();
-//     parent.classList.remove('try-superlist-clicked-state');
-//   }
-
-//   closeButton.addEventListener('click', closeWidget);  
-
-//   // Handles keyboard events
-//   document.addEventListener('keydown', (event) => {
-//     if (event.key === 'Escape') {
-//       closeWidget();
-//     } else if (event.key === 'd' || event.key === 'D') {
-//       expandWidget();
-//     }
-//   });
-// }
-
-// downloadWidget();
-
-
-// // ------------------------- SUPERLIST LOGO -----------------------------
-// // ------------------------- SUPERLIST LOGO -----------------------------
-// // ------------------------- SUPERLIST LOGO -----------------------------
-
-// // 1. Adds the doodle underneath Superlist
-
-// const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
-
-// const superSvg = `
-// <svg class="logo-doodle super-svg" viewBox="0 0 97 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M93.9481 11.584C64.1441 6.26141 4.11538 -2.54504 2.43233 4.8098C0.328525 14.0033 80.7993 2.87431 95 3.84205" stroke="#2590F2" stroke-width="4" stroke-linecap="round"/>
-// </svg>
-// `;
-
-// const listSvg = `
-// <svg class="logo-doodle list-svg" viewBox="0 0 69 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M2.50635 15.1493C3.98543 13.5307 10.1131 5.71953 10.2715 4.98064C10.43 4.24174 16.0294 12.6511 16.8218 13.777C17.6141 14.903 21.8401 6.84547 22.8966 5.22694C23.9531 3.6084 26.0132 12.4048 26.8584 13.777C27.7036 15.1493 31.6126 6.00102 32.405 4.98064C33.1974 3.96025 36.1555 12.4048 36.5253 13.39C36.8951 14.3752 40.223 5.68434 40.5928 4.98064C40.9626 4.27693 44.8716 10.8214 45.7696 12.5455C46.6676 14.2696 52.2142 4.66397 52.7424 3.46766C53.2707 2.27135 54.6969 8.92142 55.4893 10.4696C56.2817 12.0178 61.7226 3.29173 62.2508 2.41209C62.7791 1.53245 63.3601 10.3288 67.0579 13.39" stroke="#F84F39" stroke-width="3.33063" stroke-linecap="round"/>
-// </svg>
-// `;
-
-// doodleContainers.forEach(logo => {
-// 	logo.innerHTML += superSvg + listSvg;
-// });
-
-// const paths = document.querySelectorAll('.logo-doodle path');
-// paths.forEach(path => {
-//     const length = path.getTotalLength();
-//     path.style.strokeDasharray = `${length}`;
-//     path.style.strokeDashoffset = `${length}`;
-// });
-
-
 // ------------------------- SUPERLIST APP -----------------------------
 // ------------------------- SUPERLIST APP -----------------------------
 // ------------------------- SUPERLIST APP -----------------------------
 
 // 0. Static data for each list
 
-const userAvatars = {
-  "Private": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fb95bee31ef10f4fff2139_Group%202402.png",
-  "Jenna": "https://global-uploads.webflow.com/625593a881b8ebd169835ca5/64fa3fb9a17ddc5fdd291011_Rectangle%202899.jpg",
-  "Ada": "https://global-uploads.webflow.com/625593a881b8ebd169835ca5/64fa3fb851d65e51f39a0668_Rectangle%202900.jpg",
-  "Jon": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb9ec332357abbd9ebd_Rectangle%202901.jpg",
-  "Stan": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb96b77db1c6ed64f79_Rectangle%202902.jpg",
-  "Keyla": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb805a98a90b6935a98_Rectangle%202903.jpg",
-};
+// const userAvatars = {
+//   "Private": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fb95bee31ef10f4fff2139_Group%202402.png",
+//   "Jenna": "https://global-uploads.webflow.com/625593a881b8ebd169835ca5/64fa3fb9a17ddc5fdd291011_Rectangle%202899.jpg",
+//   "Ada": "https://global-uploads.webflow.com/625593a881b8ebd169835ca5/64fa3fb851d65e51f39a0668_Rectangle%202900.jpg",
+//   "Jon": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb9ec332357abbd9ebd_Rectangle%202901.jpg",
+//   "Stan": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb96b77db1c6ed64f79_Rectangle%202902.jpg",
+//   "Keyla": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa3fb805a98a90b6935a98_Rectangle%202903.jpg",
+// };
 
-const integrationIcons = {
-  "Gmail": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa47d26b77db1c6ee0fa4a_Logo.png",
-  "Notion": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4d4437ba6791a9712077_Logo.png",
-  "Linear": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4d23ddf69b1cf4b4cda5_Logo.png",
-};
+// const integrationIcons = {
+//   "Gmail": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa47d26b77db1c6ee0fa4a_Logo.png",
+//   "Notion": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4d4437ba6791a9712077_Logo.png",
+//   "Linear": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4d23ddf69b1cf4b4cda5_Logo.png",
+// };
 
-const dreamscapes = {
-  "Landscape": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85f7377dbac9ecd4349e_dream1-min.jpg",
-  "Kitchen": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85ffc5d63e58749237cc_dream2-min.jpg",
-  "Art": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85fb19e6b9cdb2331876_dream3-min.jpg",
-};
+// const dreamscapes = {
+//   "Landscape": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85f7377dbac9ecd4349e_dream1-min.jpg",
+//   "Kitchen": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85ffc5d63e58749237cc_dream2-min.jpg",
+//   "Art": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85fb19e6b9cdb2331876_dream3-min.jpg",
+// };
 
-const geoLocatedDreamscapes = {
-  "Canada": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa50af55db0bda23d2134b_CleanShot%202023-09-07%20at%2015.35.57%402x-min.png",
-  "Germany": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4f22b2f5c8bc58b85522_CleanShot%202023-09-07%20at%2015.30.23%402x-min.png",
-  "California": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa522855db0bda23d3be22_CleanShot%202023-09-07%20at%2015.43.05%402x-min.png",
-  "Washington": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa5124fc3e102b1ccbbd1f_CleanShot%202023-09-07%20at%2015.36.37%402x-min.png",
-};
+// const geoLocatedDreamscapes = {
+//   "Canada": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa50af55db0bda23d2134b_CleanShot%202023-09-07%20at%2015.35.57%402x-min.png",
+//   "Germany": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa4f22b2f5c8bc58b85522_CleanShot%202023-09-07%20at%2015.30.23%402x-min.png",
+//   "California": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa522855db0bda23d3be22_CleanShot%202023-09-07%20at%2015.43.05%402x-min.png",
+//   "Washington": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa5124fc3e102b1ccbbd1f_CleanShot%202023-09-07%20at%2015.36.37%402x-min.png",
+// };
 
 // -------------------------
 // -------------------------
 // -------------------------
 // 0. List content
 
-const listsContent = [
-  {
-  title: "App Launch",
-  avatars: 5,
-  moreUsersText: "+6",
-  dreamscape: dreamscapes.Landscape,
-  items: [
-    {
-      type: "paragraph",
-      text: "Hey team, here's a quick recap of what we're working on ahead of the launch. Feel free to add any more color and detail to each task."
-    },
-    {
-      type: "task",
-      text: "Launch readiness",
-      completed: true,
-      metadata: true,
-      image2: null,
-      image3: userAvatars.Ada,
-    },
-    {
-      type: "task",
-      text: "Value proposition",
-      completed: true,
-      metadata: false,
-      image2: integrationIcons.Gmail,
-      image3: userAvatars.Jon,
-    },
-    {
-      type: "task",
-      text: "Marketing strategy",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: userAvatars.Stan,
-    },
-    {
-      type: "task",
-      text: "Design system update",
-      completed: false,
-      metadata: false,
-      image2: integrationIcons.Linear,
-      image3: userAvatars.Jenna,
-    },
-    {
-      type: "task",
-      text: "Website Design & Dev",
-      completed: false,
-      metadata: true,
-      image2: null,
-      image3: userAvatars.Keyla,
-    },
-    {
-      type: "task",
-      text: "Pricing strategy",
-      completed: true,
-      metadata: false,
-      image2: integrationIcons.Notion,
-      image3: userAvatars.Jon,
-    },
-    {
-      type: "task",
-      text: "Prepare analytics",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: userAvatars.Ada,
-    },
-  ]},
-  {
-  title: "Kitchen Reno",
-  avatars: 2,
-  moreUsersText: "",
-  dreamscape: dreamscapes.Kitchen,
-  items: [
-    {
-      type: "paragraph",
-      text: "I'm putting this list together so we can get started organzing the project. Excited that we're doing this. 💚"
-    },
-    {
-      type: "task",
-      text: "Choose kitcheb colors",
-      completed: true,
-      metadata: false,
-      image2: null,
-      image3: null,
-    },
-    {
-      type: "task",
-      text: "Finalize the budget",
-      completed: true,
-      metadata: true,
-      image2: integrationIcons.Notion,
-      image3: userAvatars.Jenna,
-    },
-    {
-      type: "task",
-      text: "Reach out to contractor",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null,
-    },
-    {
-      type: "task",
-      text: "Prepare schematics",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: userAvatars.Ada,
-    },
-    {
-      type: "task",
-      text: "Order new electrical",
-      completed: false,
-      metadata: true,
-      image2: null,
-      image3: userAvatars.Jenna,
-    },
-    {
-      type: "task",
-      text: "Research tiling",
-      completed: true,
-      metadata: false,
-      image2: integrationIcons.Notion,
-      image3: null,
-    },
-    {
-      type: "task",
-      text: "Order materials",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: userAvatars.Ada,
-    },
-    {
-      type: "task",
-      text: "Find new plummer",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null,
-    },
+// const listsContent = [
+//   {
+//   title: "App Launch",
+//   avatars: 5,
+//   moreUsersText: "+6",
+//   dreamscape: dreamscapes.Landscape,
+//   items: [
+//     {
+//       type: "paragraph",
+//       text: "Hey team, here's a quick recap of what we're working on ahead of the launch. Feel free to add any more color and detail to each task."
+//     },
+//     {
+//       type: "task",
+//       text: "Launch readiness",
+//       completed: true,
+//       metadata: true,
+//       image2: null,
+//       image3: userAvatars.Ada,
+//     },
+//     {
+//       type: "task",
+//       text: "Value proposition",
+//       completed: true,
+//       metadata: false,
+//       image2: integrationIcons.Gmail,
+//       image3: userAvatars.Jon,
+//     },
+//     {
+//       type: "task",
+//       text: "Marketing strategy",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: userAvatars.Stan,
+//     },
+//     {
+//       type: "task",
+//       text: "Design system update",
+//       completed: false,
+//       metadata: false,
+//       image2: integrationIcons.Linear,
+//       image3: userAvatars.Jenna,
+//     },
+//     {
+//       type: "task",
+//       text: "Website Design & Dev",
+//       completed: false,
+//       metadata: true,
+//       image2: null,
+//       image3: userAvatars.Keyla,
+//     },
+//     {
+//       type: "task",
+//       text: "Pricing strategy",
+//       completed: true,
+//       metadata: false,
+//       image2: integrationIcons.Notion,
+//       image3: userAvatars.Jon,
+//     },
+//     {
+//       type: "task",
+//       text: "Prepare analytics",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: userAvatars.Ada,
+//     },
+//   ]},
+//   {
+//   title: "Kitchen Reno",
+//   avatars: 2,
+//   moreUsersText: "",
+//   dreamscape: dreamscapes.Kitchen,
+//   items: [
+//     {
+//       type: "paragraph",
+//       text: "I'm putting this list together so we can get started organzing the project. Excited that we're doing this. 💚"
+//     },
+//     {
+//       type: "task",
+//       text: "Choose kitcheb colors",
+//       completed: true,
+//       metadata: false,
+//       image2: null,
+//       image3: null,
+//     },
+//     {
+//       type: "task",
+//       text: "Finalize the budget",
+//       completed: true,
+//       metadata: true,
+//       image2: integrationIcons.Notion,
+//       image3: userAvatars.Jenna,
+//     },
+//     {
+//       type: "task",
+//       text: "Reach out to contractor",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null,
+//     },
+//     {
+//       type: "task",
+//       text: "Prepare schematics",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: userAvatars.Ada,
+//     },
+//     {
+//       type: "task",
+//       text: "Order new electrical",
+//       completed: false,
+//       metadata: true,
+//       image2: null,
+//       image3: userAvatars.Jenna,
+//     },
+//     {
+//       type: "task",
+//       text: "Research tiling",
+//       completed: true,
+//       metadata: false,
+//       image2: integrationIcons.Notion,
+//       image3: null,
+//     },
+//     {
+//       type: "task",
+//       text: "Order materials",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: userAvatars.Ada,
+//     },
+//     {
+//       type: "task",
+//       text: "Find new plummer",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null,
+//     },
     
-  ]},
-  {
-  title: "Daily Habits",
-  avatars: 1,
-  moreUsersText: "Private",
-  dreamscape: dreamscapes.Art,
-  items: [
-    {
-      type: "task",
-      text: "Wim Hof breath work",
-      completed: true,
-      metadata: true,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Shinrin-yoku",
-      completed: true,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Journal",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Write for at least 30 min",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Train gymnastics",
-      completed: true,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Meditate",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Yoga before bed",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Draw for at least 30 min",
-      completed: false,
-      metadata: true,
-      image2: null,
-      image3: null
-    },
-    {
-      type: "task",
-      text: "Sleep amazingly well 🙅‍♂️",
-      completed: false,
-      metadata: false,
-      image2: null,
-      image3: null
-    },
-  ]},
-];
+//   ]},
+//   {
+//   title: "Daily Habits",
+//   avatars: 1,
+//   moreUsersText: "Private",
+//   dreamscape: dreamscapes.Art,
+//   items: [
+//     {
+//       type: "task",
+//       text: "Wim Hof breath work",
+//       completed: true,
+//       metadata: true,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Shinrin-yoku",
+//       completed: true,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Journal",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Write for at least 30 min",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Train gymnastics",
+//       completed: true,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Meditate",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Yoga before bed",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Draw for at least 30 min",
+//       completed: false,
+//       metadata: true,
+//       image2: null,
+//       image3: null
+//     },
+//     {
+//       type: "task",
+//       text: "Sleep amazingly well 🙅‍♂️",
+//       completed: false,
+//       metadata: false,
+//       image2: null,
+//       image3: null
+//     },
+//   ]},
+// ];
 
 // -------------------------
 // -------------------------
@@ -361,22 +270,22 @@ const listsContent = [
 // 1. Pre-load assets to memory
 // Takes in an object of assets and pre-loads each to memory
 
-function preLoadAssets(assets) {
-  const promises = Object.entries(assets).map(([key, value]) => {
-      return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = resolve;
-          img.onerror = reject;
-          img.src = value;
-      });
-  });
-  return Promise.all(promises);
-}
+// function preLoadAssets(assets) {
+//   const promises = Object.entries(assets).map(([key, value]) => {
+//       return new Promise((resolve, reject) => {
+//           const img = new Image();
+//           img.onload = resolve;
+//           img.onerror = reject;
+//           img.src = value;
+//       });
+//   });
+//   return Promise.all(promises);
+// }
 
-preLoadAssets(userAvatars);
-preLoadAssets(integrationIcons);
-preLoadAssets(dreamscapes);
-preLoadAssets(geoLocatedDreamscapes);
+// preLoadAssets(userAvatars);
+// preLoadAssets(integrationIcons);
+// preLoadAssets(dreamscapes);
+// preLoadAssets(geoLocatedDreamscapes);
 
 // -------------------------
 // -------------------------
@@ -386,39 +295,39 @@ preLoadAssets(geoLocatedDreamscapes);
 // geolocateDreamscape(location) takes in a location object
 // and updates the dreamscape in the first listContent object (above)
 
-async function getUserLocation() {
-  try {
-    const response = await fetch('https://ipinfo.io/json');
-    const data = await response.json();
-    return {
-      country: data.country,
-      region: data.region
-    };
-  } catch (error) {
-    console.error("Failed to fetch user location:", error);
-    return {
-      country: "",
-      region: ""
-    };
-  }
-}
+// async function getUserLocation() {
+//   try {
+//     const response = await fetch('https://ipinfo.io/json');
+//     const data = await response.json();
+//     return {
+//       country: data.country,
+//       region: data.region
+//     };
+//   } catch (error) {
+//     console.error("Failed to fetch user location:", error);
+//     return {
+//       country: "",
+//       region: ""
+//     };
+//   }
+// }
 
-function updateDreamscape(location) {
-  if (location.country === "CA") {
-      listsContent[0].dreamscape = geoLocatedDreamscapes.Canada;
-  } else if (location.country === "DE") {
-      listsContent[0].dreamscape = geoLocatedDreamscapes.Germany;
-  } else if (location.region === "Washington") {
-      listsContent[0].dreamscape = geoLocatedDreamscapes.Washington;
-  } else if (location.region === "California") {
-      listsContent[0].dreamscape = geoLocatedDreamscapes.California;
-  }
+// function updateDreamscape(location) {
+//   if (location.country === "CA") {
+//       listsContent[0].dreamscape = geoLocatedDreamscapes.Canada;
+//   } else if (location.country === "DE") {
+//       listsContent[0].dreamscape = geoLocatedDreamscapes.Germany;
+//   } else if (location.region === "Washington") {
+//       listsContent[0].dreamscape = geoLocatedDreamscapes.Washington;
+//   } else if (location.region === "California") {
+//       listsContent[0].dreamscape = geoLocatedDreamscapes.California;
+//   }
 
-  const dreamscape = document.querySelector('.s23-dreamscape');
-  dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
-}
+//   const dreamscape = document.querySelector('.s23-dreamscape');
+//   dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
+// }
 
-getUserLocation().then(updateDreamscape);
+// getUserLocation().then(updateDreamscape);
 
 // -------------------------
 // -------------------------
