@@ -74,3 +74,7 @@ export function setUpDownloadWidget() {
   addClickEvents();
   addKeyDownEvents();
 }
+
+// ----------------
+// Function call
+setUpDownloadWidget();
