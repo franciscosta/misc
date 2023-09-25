@@ -1,6 +1,7 @@
 
-// ----------------
-// UI elements
+// ------------------------------------------------
+// A. UI Elements
+// ------------------------------------------------
 
 const widgetUI = {
   parent: document.querySelector('.s23-try-superlist-container'),
@@ -11,8 +12,9 @@ const widgetUI = {
 
 const hugeDownloadButon = document.querySelector('.s23-huge-download-link');
 
-// ----------------
-// CSS Classes
+// ------------------------------------------------
+// B. CSS Classes
+// ------------------------------------------------
 
 const classes = {
   expanded: 'try-superlist-clicked-state',
@@ -23,8 +25,9 @@ widgetUI.parent.classList.add(classes.animation);
 widgetUI.expanded.classList.add(classes.animation);
 widgetUI.collapsed.classList.add(classes.animation);
 
-// ----------------
-// Behavioral Functions
+// ------------------------------------------------
+// C. Behavioral Functions
+// ------------------------------------------------
 
 function setInitialState() {
   widgetUI.expanded.style = "0px";
@@ -44,16 +47,19 @@ function collapseWidget() {
   widgetUI.parent.classList.remove(classes.expanded);
 }
 
-// ----------------
-// Binds behavioral functions to user action
+// ------------------------------------------------
+// D. Binds behavioral functions to user action
+// ------------------------------------------------
 
 function addClickEvents() {
-  // Adds functionality to the widget itself
+
+  // 1. Adds functionality to the widget itself
   widgetUI.collapsed.addEventListener('click', expandWidget);
   widgetUI.closeButton.addEventListener('click', collapseWidget);  
 
-  // Adds the same functionality to the huge download at the bottom of the page
+  // 2. Adds the same functionality to the huge download at the bottom of the page
   hugeDownloadButon.addEventListener('click', expandWidget);
+  
 }
 
 function addKeyDownEvents() {
@@ -66,8 +72,9 @@ function addKeyDownEvents() {
   });
 }
 
-// ----------------
-// Wrapper function
+// ------------------------------------------------
+// E. Wrapper Functions
+// ------------------------------------------------
 
 function setUpDownloadWidget() {
   setInitialState();
@@ -75,6 +82,8 @@ function setUpDownloadWidget() {
   addKeyDownEvents();
 }
 
-// ----------------
-// Function call
+// ------------------------------------------------
+// F. Function calls
+// ------------------------------------------------
+
 setUpDownloadWidget();

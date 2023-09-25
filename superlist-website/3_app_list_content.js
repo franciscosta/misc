@@ -1,6 +1,8 @@
 
-// -----------------------
-// Static Assets
+
+// ------------------------------------------------
+// A. Static Assets
+// ------------------------------------------------
 
 const userAvatars = {
   "Private": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fb95bee31ef10f4fff2139_Group%202402.png",
@@ -30,8 +32,9 @@ const geoLocatedDreamscapes = {
   "Washington": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64fa5124fc3e102b1ccbbd1f_CleanShot%202023-09-07%20at%2015.36.37%402x-min.png",
 };
 
-// -----------------------
-// List content itself
+// ------------------------------------------------
+// B. List content itself
+// ------------------------------------------------
 
 const listsContent = [
   {
@@ -258,8 +261,9 @@ const listsContent = [
   ]},
 ];
 
-// -----------------------
-// Pre-load Static Assets
+// ------------------------------------------------
+// C. Pre-load Static Assets
+// ------------------------------------------------
 
 function preLoadAssets(assets) {
   const promises = Object.entries(assets).map(([key, value]) => {

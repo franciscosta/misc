@@ -1,6 +1,7 @@
 
-// -----------------------
-// Update Dreamscape based on user location
+// ------------------------------------------------
+// A. Update Dreamscape based on user location
+// ------------------------------------------------
 
 async function getUserLocation() {
   try {
@@ -31,8 +32,9 @@ function updateDreamscape(location) {
   }
 }
 
-// -----------------------
-// Update the dreamscape on load
+// ------------------------------------------------
+// B. Update the dreamscape on load
+// ------------------------------------------------
 
 async function updateDreamscapeOnLoad() {
   const location = await getUserLocation();

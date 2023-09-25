@@ -1,6 +1,4 @@
 
-
-
 const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
 
 const leftSvg = `
@@ -25,9 +23,3 @@ paths.forEach(path => {
     path.style.strokeDasharray = `${length}`;
     path.style.strokeDashoffset = `${length}`;
 });  
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   addDoodlesToLogo();
-// });
