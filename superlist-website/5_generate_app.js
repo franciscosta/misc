@@ -294,14 +294,20 @@ function generateNewList(contentObject) {
 // ------------------------------------------------
 
 // 0. Creates a map of the lists available 
-const useCaseMap = {}
+// const useCaseMap = {}
 
-listsContent.forEach((item, index) => {
-  const className = item["title"].split(" ").join("-");
-  useCaseMap[item["title"]] = {class: className, index: index + 1}
-});
+// listsContent.forEach((item, index) => {
+//   const className = item["title"].split(" ").join("-");
+//   useCaseMap[item["title"]] = {class: className, index: index + 1}
+// });
 
 function selectUseCase(list) {
+
+  const useCaseMap = {
+    "App Launch": { class: 'app-launch', index: 1 },
+    "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
+    "Daily Habits": { class: 'daily-habits', index: 3 }
+  };
 
   // 1. Gets all the buttons
   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');

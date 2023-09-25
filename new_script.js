@@ -7,29 +7,29 @@
 // The function gets passed the currently active list
 // And based on that list, it updates the active state of the button
 
-// function selectUseCase(list) {
-//   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
+function selectUseCase(list) {
+  const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
   
-//   const useCaseMap = {
-//     "App Launch": { class: 'app-launch', index: 1 },
-//     "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
-//     "Daily Habits": { class: 'daily-habits', index: 3 }
-//   };
+  const useCaseMap = {
+    "App Launch": { class: 'app-launch', index: 1 },
+    "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
+    "Daily Habits": { class: 'daily-habits', index: 3 }
+  };
 
-//   usercaseButtons.forEach(button => {
-//     for (let key in useCaseMap) {
-//       button.classList.remove(useCaseMap[key].class);
-//     }
-//   });
+  usercaseButtons.forEach(button => {
+    for (let key in useCaseMap) {
+      button.classList.remove(useCaseMap[key].class);
+    }
+  });
 
-//   // Get the matching object
-//   const useCase = useCaseMap[list.title];
+  // Get the matching object
+  const useCase = useCaseMap[list.title];
   
-//   if (useCase) {
-//     const button = document.querySelector(`.s23-ucb-${useCase.index}`);
-//     button.classList.add(useCase.class);
-//   }
-// }
+  if (useCase) {
+    const button = document.querySelector(`.s23-ucb-${useCase.index}`);
+    button.classList.add(useCase.class);
+  }
+}
 
 // -------------------------
 // -------------------------
@@ -80,8 +80,8 @@
 // -------------------------
 // 5. Onload, makes "For team work" active
 
-const button = document.querySelector(`.s23-ucb-1`);
-button.classList.add('app-launch');
+// const button = document.querySelector(`.s23-ucb-1`);
+// button.classList.add('app-launch');
 
 // -------------------------
 // -------------------------
