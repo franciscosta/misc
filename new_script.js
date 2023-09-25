@@ -7,81 +7,81 @@
 // The function gets passed the currently active list
 // And based on that list, it updates the active state of the button
 
-function selectUseCase(list) {
-  const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
+// function selectUseCase(list) {
+//   const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
   
-  const useCaseMap = {
-    "App Launch": { class: 'app-launch', index: 1 },
-    "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
-    "Daily Habits": { class: 'daily-habits', index: 3 }
-  };
+//   const useCaseMap = {
+//     "App Launch": { class: 'app-launch', index: 1 },
+//     "Kitchen Reno": { class: 'kitchen-reno', index: 2 },
+//     "Daily Habits": { class: 'daily-habits', index: 3 }
+//   };
 
-  usercaseButtons.forEach(button => {
-    for (let key in useCaseMap) {
-      button.classList.remove(useCaseMap[key].class);
-    }
-  });
+//   usercaseButtons.forEach(button => {
+//     for (let key in useCaseMap) {
+//       button.classList.remove(useCaseMap[key].class);
+//     }
+//   });
 
-  // Get the matching object
-  const useCase = useCaseMap[list.title];
+//   // Get the matching object
+//   const useCase = useCaseMap[list.title];
   
-  if (useCase) {
-    const button = document.querySelector(`.s23-ucb-${useCase.index}`);
-    button.classList.add(useCase.class);
-  }
-}
+//   if (useCase) {
+//     const button = document.querySelector(`.s23-ucb-${useCase.index}`);
+//     button.classList.add(useCase.class);
+//   }
+// }
 
 // -------------------------
 // -------------------------
 // -------------------------
 // 4. Automatically cycles through each button every 8 secs
 
-(function() {
+// (function() {
 
-  let currentIndex = 1; 
-  let interval;
-  const buttons = document.querySelectorAll('.s23-usecase-button');
-  const pauseElements = document.querySelectorAll('.pause');
+//   let currentIndex = 1; 
+//   let interval;
+//   const buttons = document.querySelectorAll('.s23-usecase-button');
+//   const pauseElements = document.querySelectorAll('.pause');
 
-  function triggerButtonAction(index) {
-    buttons[index].click();
-  }
+//   function triggerButtonAction(index) {
+//     buttons[index].click();
+//   }
 
-  function startTransition() {
-    if (interval) {
-      clearInterval(interval);
-    }
+//   function startTransition() {
+//     if (interval) {
+//       clearInterval(interval);
+//     }
 
-    interval = setInterval(() => {
-      triggerButtonAction(currentIndex);
-      currentIndex = (currentIndex + 1) % buttons.length; 
-    }, 8000);
-  }
+//     interval = setInterval(() => {
+//       triggerButtonAction(currentIndex);
+//       currentIndex = (currentIndex + 1) % buttons.length; 
+//     }, 8000);
+//   }
 
-  document.addEventListener("DOMContentLoaded", function() {
+//   document.addEventListener("DOMContentLoaded", function() {
 
-    startTransition();
+//     startTransition();
 
-    pauseElements.forEach(pauseElement => {
-      pauseElement.addEventListener('mouseover', () => {
-        clearInterval(interval);
-      });
+//     pauseElements.forEach(pauseElement => {
+//       pauseElement.addEventListener('mouseover', () => {
+//         clearInterval(interval);
+//       });
 
-      pauseElement.addEventListener('mouseout', () => {
-        startTransition();
-      });
-    });
-  });
+//       pauseElement.addEventListener('mouseout', () => {
+//         startTransition();
+//       });
+//     });
+//   });
 
-})();
+// })();
 
 // -------------------------
 // -------------------------
 // -------------------------
 // 5. Onload, makes "For team work" active
 
-const button = document.querySelector(`.s23-ucb-1`);
-button.classList.add('app-launch');
+// const button = document.querySelector(`.s23-ucb-1`);
+// button.classList.add('app-launch');
 
 // -------------------------
 // -------------------------
@@ -89,35 +89,35 @@ button.classList.add('app-launch');
 // 6. Handles the selection of items in the app's sidebar
 // This is responsible for generating the actual list content and selecting the button (above)
 
-function handleListItemClick(item) {
-  const listName = item.querySelector('.s23-list-title-in-sidebar').textContent;
+// function handleListItemClick(item) {
+//   const listName = item.querySelector('.s23-list-title-in-sidebar').textContent;
       
-  // Find the corresponding list in listsContent
-  const matchingList = listsContent.find(list => list.title === listName);
+//   // Find the corresponding list in listsContent
+//   const matchingList = listsContent.find(list => list.title === listName);
   
-  // Early exit if no matching list found
-  if (!matchingList) return; 
+//   // Early exit if no matching list found
+//   if (!matchingList) return; 
 
-  generateNewList(matchingList); // Generates a new list
+//   generateNewList(matchingList); // Generates a new list
 
-  deselectAllSidebarItems(); // Deselects all items in sidebar
-  selectUseCase(matchingList); // Selects matching item at the top
-  item.classList.add('s23-sidebar-selected'); // Select the sidebar
-}
+//   deselectAllSidebarItems(); // Deselects all items in sidebar
+//   selectUseCase(matchingList); // Selects matching item at the top
+//   item.classList.add('s23-sidebar-selected'); // Select the sidebar
+// }
 
-function deselectAllSidebarItems() {
-  const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
-  listItems.forEach(item => {
-    item.classList.remove('s23-sidebar-selected');
-  });
-}
+// function deselectAllSidebarItems() {
+//   const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
+//   listItems.forEach(item => {
+//     item.classList.remove('s23-sidebar-selected');
+//   });
+// }
 
-const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
-listItems.forEach(item => {
-  item.addEventListener('click', function() {
-      handleListItemClick(this);
-  });
-});
+// const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
+// listItems.forEach(item => {
+//   item.addEventListener('click', function() {
+//       handleListItemClick(this);
+//   });
+// });
 
 // -------------------------
 // -------------------------
@@ -401,29 +401,29 @@ listItems.forEach(item => {
 // 13. Handles the relationship between buttons in header and list items in app
 // If user clicks the buttons at the top, it generates a programatic click in the app
 
-function generateClick(origin, destination) {
+// function generateClick(origin, destination) {
     
-  function programmaticClick() {
-      return new MouseEvent('click', {
-          'bubbles': true,
-          'cancelable': true,
-          'view': window
-      });
-  }
+//   function programmaticClick() {
+//       return new MouseEvent('click', {
+//           'bubbles': true,
+//           'cancelable': true,
+//           'view': window
+//       });
+//   }
   
-  const originElement = document.querySelector(origin);
-  const destinationElement = document.querySelector(destination);
+//   const originElement = document.querySelector(origin);
+//   const destinationElement = document.querySelector(destination);
 
-  if (originElement && destinationElement) {
-      originElement.addEventListener('click', () => {
-        destinationElement.dispatchEvent(programmaticClick());
-      });
-  }
-}
+//   if (originElement && destinationElement) {
+//       originElement.addEventListener('click', () => {
+//         destinationElement.dispatchEvent(programmaticClick());
+//       });
+//   }
+// }
 
-generateClick('.s23-ucb-1', '#app-launch-item');
-generateClick('.s23-ucb-2', '#kitchen-reno-item');
-generateClick('.s23-ucb-3', '#daily-habits-item');
+// generateClick('.s23-ucb-1', '#app-launch-item');
+// generateClick('.s23-ucb-2', '#kitchen-reno-item');
+// generateClick('.s23-ucb-3', '#daily-habits-item');
 
 // ------------------------- GENERAL BUTTON SOUND -----------------------------
 // ------------------------- GENERAL BUTTON SOUND -----------------------------

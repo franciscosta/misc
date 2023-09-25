@@ -190,10 +190,8 @@ function createTaskHTMLElement(text, completed, metadataBool, image2 = null, ima
 // E. Adds sound to the checkboxes
 // ------------------------------------------------
 
-function soundifyCheckboxes() {
+function makeTasksCompletable() {
 
-  const checkboxes = document.querySelectorAll('.s23-v2-task .s23-app-checkbox');
-  
   const sounds = [
     'https://res.cloudinary.com/superlist/video/upload/v1694132643/website/2023/sound/dir1-checkbox-on-05_smu6s9.wav',
     'https://res.cloudinary.com/superlist/video/upload/v1694132643/website/2023/sound/dir1-checkbox-on-08_mrlies.wav',
@@ -202,32 +200,37 @@ function soundifyCheckboxes() {
     'https://res.cloudinary.com/superlist/video/upload/v1694132642/website/2023/sound/dir1-checkbox-on-09_kv1xqo.wav',
     'https://res.cloudinary.com/superlist/video/upload/v1694132642/website/2023/sound/dir1-checkbox-on-10_sq7vyp.wav',
     'https://res.cloudinary.com/superlist/video/upload/v1694132642/website/2023/sound/dir1-checkbox-on-07_fl1xrj.wav',
-  ]
+  ];
+
+  // 1. Gets all checkboxes
+  const checkboxes = document.querySelectorAll('.s23-v2-task .s23-app-checkbox');
   
+  // 2. Adds task completion behavior
   checkboxes.forEach(checkbox => {
   
     checkbox.addEventListener('click', function(e) {
     
+      // 3. Finds the parent container of the task
       let parentTask = e.currentTarget.closest('.s23-v2-task');
       if (parentTask) {
-      
-        console.log('Found the parent');
 
+        // 4. Gets the checkbox, and the completion strikethrough div
         let check = parentTask.querySelector('.s23-app-checkbox');
         let stokethrough = parentTask.querySelector('.s23-app-task-completed');
         let text = parentTask.querySelector('.s23-task-text-wrapper');
   
+        // 5. Sets completable
         if (check) check.classList.toggle('check-active');
         if (stokethrough) stokethrough.classList.toggle('strokethrough-active');
         if (text) text.classList.toggle('text-active');
       }
       
+      // 6. Plays in a random sound from the collection above
       let sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
       sound.play();
       
     });
-  });
-  
+  }); 
 }
 
 // ------------------------------------------------
@@ -278,20 +281,184 @@ function generateNewList(contentObject) {
         const dreamscape = document.querySelector(".s23-dreamscape");
         dreamscape.style.backgroundImage = `url(${contentObject.dreamscape})`;
 
-        // 10. Re-enables the sound
-        soundifyCheckboxes();
+        // 10. Makes tasks completable once they've loaded to the dom
+        makeTasksCompletable();
 
       }, 50);
 
   }, 300); 
 }
 
-// Generates the list at the start.
-document.addEventListener('DOMContentLoaded', () => {
-  generateNewList(listsContent[0]);
+// ------------------------------------------------
+// G. Handles the buttons above the app that also select a list
+// ------------------------------------------------
+
+// 0. Creates a map of the lists available 
+const useCaseMap = {}
+
+listsContent.forEach((item, index) => {
+  const className = item["title"].split(" ").join("-");
+  useCaseMap[item["title"]] = {class: className, index: index + 1}
 });
 
+function selectUseCase(list) {
+
+  // 1. Gets all the buttons
+  const usercaseButtons = document.querySelectorAll('.s23-usecase-button');
+  
+  // 2. De-selects all buttons
+  usercaseButtons.forEach(button => {
+    for (let key in useCaseMap) {
+      button.classList.remove(useCaseMap[key].class);
+    }
+  });
+
+  // 3. Matches the list to the map
+  const useCase = useCaseMap[list.title];
+  
+  if (useCase) {
+    // 4. Selects the right item
+    const button = document.querySelector(`.s23-ucb-${useCase.index}`);
+    button.classList.add(useCase.class);
+  }
+}
 
 // ------------------------------------------------
-// 
+// H. Handles the clicks in the app's sidebar to load in a new list
+// ------------------------------------------------
+
+function deselectAllSidebarItems() {
+  const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
+  listItems.forEach(item => {
+    // 1. De-selects all list items in the app's sidebar
+    item.classList.remove('s23-sidebar-selected');
+  });
+}
+
+function sidebarListSelection(item) {
+
+  // 1. Gets the name of the list that was clicked
+  const listName = item.querySelector('.s23-list-title-in-sidebar').textContent;
+      
+  // 2. Finds the matching list in the list object 
+  const matchingList = listsContent.find(list => list.title === listName);
+  
+  // 3. If the matchig list was found
+  if (!matchingList) return; 
+
+  // 4. Creates the new list with the content from the matching list
+  generateNewList(matchingList);
+
+  // 5. De-selects all sidebar items
+  deselectAllSidebarItems(); 
+
+  // 6. Selects the right sidebar item that was clicked just now
+  item.classList.add('s23-sidebar-selected');
+
+  // 7. Updates the user case button above the app
+  selectUseCase(matchingList); 
+}
+
+function makeListItemsClickable() {
+
+  // 1. Selects all selectable items
+  const listItems = document.querySelectorAll('.s23-sidebar-hoverableitem');
+
+  // 2. Applies the functionality on click
+  listItems.forEach(item => {
+    item.addEventListener('click', function() {
+      sidebarListSelection(this);
+    });
+  });
+}
+
+// Makes sidebar items clickable
+makeListItemsClickable();
+
+// ------------------------------------------------
+// I. Generates a programatic click on the app's sidebar when a use case is clicked
+// ------------------------------------------------
+
+function generateClick(origin, destination) {
+    
+  // 1. Helper function to help manage the programatic click
+  function programmaticClick() {
+      return new MouseEvent('click', {
+          'bubbles': true,
+          'cancelable': true,
+          'view': window
+      });
+  }
+  
+  // 2. Gts the elements
+  const originElement = document.querySelector(origin);
+  const destinationElement = document.querySelector(destination);
+
+  // 3. Adds functionality on click
+  if (originElement && destinationElement) {
+      originElement.addEventListener('click', () => {
+        destinationElement.dispatchEvent(programmaticClick());
+      });
+  }
+}
+
+generateClick('.s23-ucb-1', '#app-launch-item');
+generateClick('.s23-ucb-2', '#kitchen-reno-item');
+generateClick('.s23-ucb-3', '#daily-habits-item');
+
+// ------------------------------------------------
+// J. Cycles through each list by clicking a use case every 8 seconds
+// ------------------------------------------------
+
+const time = 8000;
+
+(function() {
+
+  let currentIndex = 1; 
+  let interval;
+  const buttons = document.querySelectorAll('.s23-usecase-button');
+  const pauseElements = document.querySelectorAll('.pause');
+
+  function triggerButtonAction(index) {
+    buttons[index].click();
+  }
+
+  function startTransition() {
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    interval = setInterval(() => {
+      triggerButtonAction(currentIndex);
+      currentIndex = (currentIndex + 1) % buttons.length; 
+    }, time);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    startTransition();
+
+    pauseElements.forEach(pauseElement => {
+      pauseElement.addEventListener('mouseover', () => {
+        clearInterval(interval);
+      });
+
+      pauseElement.addEventListener('mouseout', () => {
+        startTransition();
+      });
+    });
+  });
+
+})();
+
+// ------------------------------------------------
+// ------------------------------------------------
+
+// Generates the first list when the page is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  generateNewList(listsContent[0]);
+  selectUseCase(listsContent[0]);
+});
+
+// ------------------------------------------------
 // ------------------------------------------------
