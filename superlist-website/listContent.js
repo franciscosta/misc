@@ -310,7 +310,7 @@ function updateDreamscape(location) {
   }
 }
 
-getUserLocation().then(updateDreamscape);
+// getUserLocation().then(updateDreamscape);
 
 // -----------------------
 // Update the dreamscape on load
@@ -319,6 +319,5 @@ document.addEventListener('DOMContentLoaded', function() {
   const dreamscape = document.querySelector('.s23-dreamscape');
   dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
 
-  console.log(dreamscape);
-  console.log('Dreamscape updated');
+  getUserLocation().then(updateDreamscape);
 });
