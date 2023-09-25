@@ -317,9 +317,7 @@ getUserLocation().then(updateDreamscape);
 
 document.addEventListener('DOMContentLoaded', function() {
   const dreamscape = document.querySelector('.s23-dreamscape');
-  if (dreamscape) {
-      dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
-  } else {
-      console.warn('Element .s23-dreamscape not found');
-  }
+  dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
+
+  console.log('Dreamscape updated');
 });
