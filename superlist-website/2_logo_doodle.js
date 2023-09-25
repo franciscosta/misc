@@ -1,7 +1,7 @@
 
 
 
-const doodleContainers = document.querySelector('.s23-superlist-logo-link');
+const doodleContainers = document.querySelectorAll('.s23-superlist-logo-link');
 
 const leftSvg = `
 <svg class="logo-doodle super-svg" viewBox="0 0 97 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,8 +15,9 @@ const rightSvg = `
 </svg>
 `;
 
-console.log(doodleContainers);
-doodleContainers.innerHTML += leftSvg + rightSvg;
+doodleContainers.forEach(logo => {
+  logo.innerHTML += leftSvg + rightSvg;
+})
 
 const paths = document.querySelectorAll('.logo-doodle path');
 paths.forEach(path => {
