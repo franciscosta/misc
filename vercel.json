@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/superlist-website/*.js",
+      "source": "/superlist-website/:filename+.js",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "https://superlist-dev.webflow.io" },
         { "key": "Access-Control-Allow-Origin", "value": "https://superlist.com" }
