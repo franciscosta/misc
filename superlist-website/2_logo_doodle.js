@@ -25,4 +25,7 @@ function addDoodlesToLogo() {
   });  
 }
 
-addDoodlesToLogo();
+
+document.addEventListener('DOMContentLoaded', () => {
+  addDoodlesToLogo();
+});
