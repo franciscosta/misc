@@ -456,8 +456,13 @@ const time = 8000;
 
 // Generates the first list when the page is loaded
 document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. Generates the first list on load
   generateNewList(listsContent[0]);
-  selectUseCase(listsContent[0]);
+  
+  // 2. Makes the first button selected
+  const button = document.querySelector(`.s23-ucb-1`);
+  button.classList.add('app-launch');
 });
 
 // ------------------------------------------------

@@ -80,8 +80,8 @@
 // -------------------------
 // 5. Onload, makes "For team work" active
 
-// const button = document.querySelector(`.s23-ucb-1`);
-// button.classList.add('app-launch');
+const button = document.querySelector(`.s23-ucb-1`);
+button.classList.add('app-launch');
 
 // -------------------------
 // -------------------------
