@@ -1,0 +1,11 @@
+{
+  "headers": [
+    {
+      "source": "/path/to/your/resource",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "https://superlist-dev.webflow.io" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://superlist.com" }
+      ]
+    }
+  ]
+}
