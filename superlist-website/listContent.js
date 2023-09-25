@@ -313,14 +313,17 @@ function updateDreamscape(location) {
   console.log(listsContent[0].dreamscape);
 }
 
-getUserLocation().then(updateDreamscape);
+// getUserLocation().then(updateDreamscape);
 
 // -----------------------
 // Update the dreamscape on load
 
-document.addEventListener('DOMContentLoaded', function() {
+async function initializePage() {
+  const location = await getUserLocation();
+  updateDreamscape(location);
+
   const dreamscape = document.querySelector('.s23-dreamscape');
   dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
+}
 
-  console.log('It was updated in place')
-});
+document.addEventListener('DOMContentLoaded', initializePage);
