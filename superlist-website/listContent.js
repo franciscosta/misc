@@ -308,9 +308,18 @@ function updateDreamscape(location) {
   } else if (location.region === "California") {
       listsContent[0].dreamscape = geoLocatedDreamscapes.California;
   }
-
-  // const dreamscape = document.querySelector('.s23-dreamscape');
-  // dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
 }
 
 getUserLocation().then(updateDreamscape);
+
+// -----------------------
+// Update the dreamscape on load
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dreamscape = document.querySelector('.s23-dreamscape');
+  if (dreamscape) {
+      dreamscape.style.backgroundImage = `url("${listsContent[0].dreamscape}")`;
+  } else {
+      console.warn('Element .s23-dreamscape not found');
+  }
+});
