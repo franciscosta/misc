@@ -69,7 +69,7 @@ function addKeyDownEvents() {
 // ----------------
 // Wrapper function
 
-export function setUpDownloadWidget() {
+function setUpDownloadWidget() {
   setInitialState();
   addClickEvents();
   addKeyDownEvents();

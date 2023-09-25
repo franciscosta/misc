@@ -1,5 +1,5 @@
 
-export function addDoodlesToLogo() {
+function addDoodlesToLogo() {
 
   const doodleContainers = document.querySelector('.s23-superlist-logo-link');
 
