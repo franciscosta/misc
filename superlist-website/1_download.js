@@ -59,7 +59,7 @@ function addClickEvents() {
 function addKeyDownEvents() {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      closeWidget();
+      collapseWidget();
     } else if (event.key === 'd' || event.key === 'D') {
       expandWidget();
     }
