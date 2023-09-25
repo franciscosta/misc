@@ -15,6 +15,7 @@ const rightSvg = `
 </svg>
 `;
 
+console.log(doodleContainers);
 doodleContainers.innerHTML += leftSvg + rightSvg;
 
 const paths = document.querySelectorAll('.logo-doodle path');
