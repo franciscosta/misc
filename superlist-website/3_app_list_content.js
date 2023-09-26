@@ -45,7 +45,7 @@ const listsContent = [
   items: [
     {
       type: "paragraph",
-      text: "Hey team, here's a quick recap of what we're working on ahead of the launch. Feel free to add any more color and detail to each task."
+      text: "Hey team, here's a quick recap of what we're working on ahead of the launch. Feel free to add any more notes or details to the tasks."
     },
     {
       type: "task",
@@ -81,7 +81,7 @@ const listsContent = [
     },
     {
       type: "task",
-      text: "Website Design & Dev",
+      text: "Website design & dev",
       completed: false,
       metadata: true,
       image2: null,
@@ -116,7 +116,7 @@ const listsContent = [
     },
     {
       type: "task",
-      text: "Choose kitcheb colors",
+      text: "Choose kitchen colors",
       completed: true,
       metadata: false,
       image2: null,
