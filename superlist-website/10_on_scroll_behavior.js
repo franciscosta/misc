@@ -1,77 +1,7 @@
 
-
-// ------------------------- LAUNDRY LIST -----------------------------
-// ------------------------- LAUNDRY LIST -----------------------------
-// ------------------------- LAUNDRY LIST -----------------------------
-
-// 1. Handles the fading away of each item
-// Gets number of items in the list, divides 90% opacity by number of item
-// Then decreases that by all items. This ensures last item is always 10%.
-
-function adjustOpacity() {
-  const elements = document.querySelectorAll('.s23-laundry-row-title');
-  
-  if (!elements.length) return; 
-  
-  const decrement = (1 - 0.1) / (elements.length - 1); 
-
-  for (let i = 1; i < elements.length; i++) {
-
-      const targetOpacity = 1 - i * decrement;
-      elements[i].style.opacity = targetOpacity.toFixed(2); 
-  }
-}
-
-adjustOpacity();
-
-
-// ------------------------- HUGE DOWNLOAD BUTTON -----------------------------
-// ------------------------- HUGE DOWNLOAD BUTTON -----------------------------
-// ------------------------- HUGE DOWNLOAD BUTTON -----------------------------
-
-// 1. Handles the color updating of the button
-// Based on where the user's mouse is (4 quadrants)
-function updateButtonColor(e) {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
-  const halfWidth = width / 2;
-  const halfHeight = height / 2;
-
-  const button = document.querySelector('.s23-huge-download-link');
-  if (!button) return; 
-
-  const quadrant = (e.clientX > halfWidth) + 2 * (e.clientY > halfHeight);
-
-  const colors = ['#F84F39', '#6B66DA', '#2590F2', '#2A966F'];
-
-  button.style.backgroundColor = colors[quadrant];
-}
-
-document.addEventListener('mousemove', function(e) {
-  updateButtonColor(e)
-});
-
-// -------------------------
-// -------------------------
-// -------------------------
-// 2. Sets the url if mobile
-function setDownloadUrl() {
-
-  const width = window.innerWidth;
-  const button = document.querySelector('.s23-huge-download-link');
-
-  if (width <= 991) {
-    button.href="#thisisadownloadlink"
-  }
-}
-
-setDownloadUrl()
-
-
-// ------------------------- ON SCROLL REVEALS -----------------------------
-// ------------------------- ON SCROLL REVEALS -----------------------------
-// ------------------------- ON SCROLL REVEALS -----------------------------
+// ------------------------------------------------
+// A. Call functions on scroll
+// ------------------------------------------------
 
 document.addEventListener('scroll', function() {
 
@@ -83,6 +13,10 @@ document.addEventListener('scroll', function() {
 
 });
 
+// ------------------------------------------------
+// B. Adds some paralax to the app
+// ------------------------------------------------
+
 function slowerApp() {
 
   var app = document.querySelector('.s23-app');
@@ -91,6 +25,10 @@ function slowerApp() {
   var offset = scrolled * 0.1;
   app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
 }
+
+// ------------------------------------------------
+// C. Revels the first slide
+// ------------------------------------------------
 
 function firstSlideReveal() {
 
@@ -128,6 +66,10 @@ function firstSlideReveal() {
   }
 }
 
+// ------------------------------------------------
+// D. Revels the dark mode section
+// ------------------------------------------------
+
 function darkSectionReveal() {
 
   const darkModeParent = document.querySelector('.s23-dark-mode'); 
@@ -144,6 +86,10 @@ function darkSectionReveal() {
   }
 }
 
+// ------------------------------------------------
+// E. Revels the laundry list
+// ------------------------------------------------
+
 function laundryListReveal() {
 
   const laundryList = document.querySelector('.s23-laundry-list-container');
@@ -158,6 +104,10 @@ function laundryListReveal() {
     }
   }
 }
+
+// ------------------------------------------------
+// F. Revels the hude download button
+// ------------------------------------------------
 
 function hugeDownloadReveal() {
 
