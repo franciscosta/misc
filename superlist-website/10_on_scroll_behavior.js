@@ -35,6 +35,7 @@ function firstSlideReveal() {
   const firstSlide = document.querySelector('.s23-slide-first');
   const innerSection = firstSlide.querySelector('.s23-pitch-right-1');
   const innerSectionImage = innerSection.querySelector('.s23-first-image');
+  const hero = document.querySelector('.s23-hero');
   
   if (firstSlide) {
   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
@@ -54,6 +55,8 @@ function firstSlideReveal() {
 
       innerSection.style.backgroundColor = '#F84F39';
       innerSectionImage.style.opacity = '1';
+
+      hero.style.backgroundColor = 'white';
     } else {
       firstSlide.style.width = '100%';
       firstSlide.style.height = '100vh';
@@ -62,6 +65,8 @@ function firstSlideReveal() {
 
       innerSection.style.backgroundColor = 'transparent';
       innerSectionImage.style.opacity = '0';
+
+      hero.style.backgroundColor = 'white';
     }
   }
 }
