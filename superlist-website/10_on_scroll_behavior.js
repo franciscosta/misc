@@ -5,7 +5,11 @@
 
 document.addEventListener('scroll', function() {
 
-  slowerApp();
+  // Slowing down elements
+  slowerApp('.s23-app', 0.1); // the app itself
+  slowerApp('.s23-free-for-individuals', 0.2); // free for individuals
+
+  // Everything else
   firstSlideReveal();
   darkSectionReveal();
   laundryListReveal();
@@ -17,12 +21,12 @@ document.addEventListener('scroll', function() {
 // B. Adds some paralax to the app
 // ------------------------------------------------
 
-function slowerApp() {
+function slowerApp(elementClass, speed) {
 
-  var app = document.querySelector('.s23-app');
+  var app = document.querySelector(elementClass);
   var scrolled = window.scrollY;
   
-  var offset = scrolled * 0.1;
+  var offset = scrolled * speed;
   app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
 }
 
