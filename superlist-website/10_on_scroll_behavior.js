@@ -22,7 +22,7 @@ function slowerApp() {
   var app = document.querySelector('.s23-app');
   var scrolled = window.scrollY;
   
-  var offset = scrolled * 0.1;
+  var offset = scrolled * 0.2;
   app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
 }
 
