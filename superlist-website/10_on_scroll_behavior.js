@@ -19,7 +19,7 @@ document.addEventListener('scroll', function() {
 });
 
 // ------------------------------------------------
-// B. Adds some paralax to the app
+// B. Hiding forever free on mobile
 // ------------------------------------------------
 
 function hideForeverFree() {
@@ -27,7 +27,11 @@ function hideForeverFree() {
 
   let distanceFromTop = item.getBoundingClientRect().top;
 
-  console.log(distanceFromTop);
+  if (distanceFromTop < 20) {
+    item.style.opacity = '0';
+  } else {
+    item.style.opacity = '1'
+  }
 
 }
 
