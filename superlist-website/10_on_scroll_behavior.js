@@ -7,7 +7,6 @@ document.addEventListener('scroll', function() {
 
   // Slowing down elements
   slowerApp('.s23-app', 0.1); // the app itself
-  slowerApp('.s23-free-for-individuals', 0.2); // free for individuals
 
   // Everything else
   firstSlideReveal();
