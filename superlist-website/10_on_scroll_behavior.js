@@ -27,7 +27,7 @@ function hideForeverFree() {
 
   let distanceFromTop = item.getBoundingClientRect().top;
 
-  if (distanceFromTop < 60) {
+  if (distanceFromTop < 100) {
     item.style.opacity = '0';
   } else {
     item.style.opacity = '1'
