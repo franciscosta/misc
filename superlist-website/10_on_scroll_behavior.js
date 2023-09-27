@@ -5,7 +5,7 @@
 
 document.addEventListener('scroll', function() {
 
-  // slowerApp();
+  slowerApp();
   firstSlideReveal();
   darkSectionReveal();
   laundryListReveal();
