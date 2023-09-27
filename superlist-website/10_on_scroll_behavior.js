@@ -5,6 +5,8 @@
 
 document.addEventListener('scroll', function() {
 
+  hideForeverFree();
+
   // Slowing down elements
   slowerApp('.s23-app', 0.1); // the app itself
 
@@ -15,6 +17,19 @@ document.addEventListener('scroll', function() {
   hugeDownloadReveal();
 
 });
+
+// ------------------------------------------------
+// B. Adds some paralax to the app
+// ------------------------------------------------
+
+function hideForeverFree() {
+  const item = document.querySelector('.s23-forever-free-container');
+
+  let distanceFromTop = item.getBoundingClientRect().top;
+
+  console.log(distanceFromTop);
+
+}
 
 // ------------------------------------------------
 // B. Adds some paralax to the app
