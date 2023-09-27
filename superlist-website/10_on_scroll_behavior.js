@@ -40,7 +40,7 @@ function firstSlideReveal() {
   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
     let deviceWidth = window.innerWidth;
     
-    let distance = deviceWidth > 480 ? 0 : 150; 
+    let distance = deviceWidth > 480 ? 300 : 150; 
 		let width = deviceWidth > 480 ? '95%' : '90%';
 		let height = deviceWidth > 480 ? '90vh' : '90vh';
 		let borderRadius = deviceWidth > 480 ? '80px' : '40px'
