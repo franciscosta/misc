@@ -5,13 +5,15 @@
 
 document.addEventListener('scroll', function() {
 
+  let deviceWidth = window.innerWidth;
+
   hideForeverFree();
 
   // Slowing down elements
-  slowerApp('.s23-app', 0.1); // the app itself
+  slowerApp('.s23-app', 0.1, deviceWidth); // the app itself
 
   // Everything else
-  firstSlideReveal();
+  firstSlideReveal(deviceWidth);
   darkSectionReveal();
   laundryListReveal();
   hugeDownloadReveal();
@@ -39,20 +41,22 @@ function hideForeverFree() {
 // B. Adds some paralax to the app
 // ------------------------------------------------
 
-function slowerApp(elementClass, speed) {
+function slowerApp(elementClass, speed, deviceWidth) {
 
-  var app = document.querySelector(elementClass);
-  var scrolled = window.scrollY;
-  
-  var offset = scrolled * speed;
-  app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
+  if (deviceWidth > 480) {
+    var app = document.querySelector(elementClass);
+    var scrolled = window.scrollY;
+    
+    var offset = scrolled * speed;
+    app.style.transform = 'translate3d(0,' + offset + 'px, 0)';
+  }
 }
 
 // ------------------------------------------------
 // C. Revels the first slide
 // ------------------------------------------------
 
-function firstSlideReveal() {
+function firstSlideReveal(deviceWidth) {
 
   const firstSlide = document.querySelector('.s23-slide-first');
   const innerSection = firstSlide.querySelector('.s23-pitch-right-1');
@@ -61,7 +65,6 @@ function firstSlideReveal() {
   
   if (firstSlide) {
   	let firstSlidePosition = firstSlide.parentNode.getBoundingClientRect().top;
-    let deviceWidth = window.innerWidth;
     
     let distance = deviceWidth > 480 ? 500 : 150; 
 		let width = deviceWidth > 480 ? '95%' : '90%';
