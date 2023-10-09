@@ -68,7 +68,7 @@ function firstSlideReveal(deviceWidth) {
     
     let distance = deviceWidth > 480 ? 500 : 350; 
 		let width = deviceWidth > 480 ? '95%' : '90%';
-		let height = deviceWidth > 480 ? '90vh' : '90vh';
+		let height = deviceWidth > 480 ? '90vh' : 'auto';
 		let borderRadius = deviceWidth > 480 ? '80px' : '40px'
     let margintop = deviceWidth > 480 ? '0' : '30px'
     
