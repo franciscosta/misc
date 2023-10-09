@@ -21,7 +21,7 @@ const integrationIcons = {
 
 const dreamscapes = {
   "Landscape": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85f7377dbac9ecd4349e_dream1-min.jpg",
-  "Kitchen": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85ffc5d63e58749237cc_dream2-min.jpg",
+  "Kitchen": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/652417b121909f6dbadf87a5_CleanShot%202023-10-09%20at%2016.08.58%402x-min.png",
   "Art": "https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/64ff85fb19e6b9cdb2331876_dream3-min.jpg",
 };
 
