@@ -4,7 +4,7 @@
 // ------------------------------------------------
 
 const videos = {
-  "desktop": "https://res.cloudinary.com/superlist/video/upload/c_scale,w_1800/v1694803219/website/2023/video/CleanShot_2023-09-15_at_11.37.26_hjqtni.mp4",
+  "desktop": "https://res.cloudinary.com/superlist/video/upload/v1698306208/website/2023/video/Superlist_Walkthrough_2_qk7jlx.mp4",
   "mobile": "https://res.cloudinary.com/superlist/video/upload/v1694815451/website/2023/video/RPReplay_Final1694815391_uc52cd.mp4"
 }
 
