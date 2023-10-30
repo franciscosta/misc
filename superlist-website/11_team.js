@@ -101,7 +101,7 @@ cells.forEach(cell => {
 
   cell.innerHTML = `
   <video autoplay muted loop playsinline class="careers23-team-video">
-    <source src="${team[currentName].webm}" type="video/webm">
+    <source src="${team[currentName]['webm']}" type="video/webm">
   </video>
   `;
 
