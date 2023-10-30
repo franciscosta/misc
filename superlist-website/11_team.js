@@ -93,6 +93,10 @@ const team = {
 
 const names = Object.keys(team);
 
+names.forEach(name => {
+  console.log(team[name]['webm']);
+});
+
 const cells = document.querySelectorAll('.careers23-individual-item');
 
 cells.forEach(cell => {
@@ -101,7 +105,7 @@ cells.forEach(cell => {
 
   cell.innerHTML = `
   <video autoplay muted loop playsinline class="careers23-team-video">
-    <source src="${team[currentName]['webm']}" type="video/webm">
+    <source src="${team[currentName]['mp4']}" type="video/mp4">
   </video>
   `;
 
