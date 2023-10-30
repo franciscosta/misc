@@ -103,7 +103,7 @@ cells.forEach(cell => {
 
   const currentName = names.pop();
 
-  if (team[currentName]['mp4']) {
+  if (currentName) {
     cell.innerHTML = `
     <video autoplay muted loop playsinline class="careers23-team-video">
       <source src="${team[currentName]['mp4']}" type="video/mp4">
