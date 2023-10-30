@@ -93,10 +93,6 @@ const team = {
 
 const names = Object.keys(team);
 
-names.forEach(name => {
-  console.log(team[name]['webm']);
-});
-
 const cells = document.querySelectorAll('.careers23-individual-item');
 
 cells.forEach(cell => {
