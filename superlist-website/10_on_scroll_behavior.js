@@ -7,7 +7,7 @@ document.addEventListener('scroll', function() {
 
   let deviceWidth = window.innerWidth;
 
-  hideForeverFree();
+  // hideForeverFree();
 
   // Slowing down elements
   slowerApp('.s23-app', 0.1, deviceWidth); // the app itself
@@ -24,18 +24,18 @@ document.addEventListener('scroll', function() {
 // B. Hiding forever free on mobile
 // ------------------------------------------------
 
-function hideForeverFree() {
-  const item = document.querySelector('.s23-forever-free-container');
+// function hideForeverFree() {
+//   const item = document.querySelector('.s23-forever-free-container');
 
-  let distanceFromTop = item.getBoundingClientRect().top;
+//   let distanceFromTop = item.getBoundingClientRect().top;
 
-  if (distanceFromTop < 100) {
-    item.style.opacity = '0';
-  } else {
-    item.style.opacity = '1'
-  }
+//   if (distanceFromTop < 100) {
+//     item.style.opacity = '0';
+//   } else {
+//     item.style.opacity = '1'
+//   }
 
-}
+// }
 
 // ------------------------------------------------
 // B. Adds some paralax to the app
