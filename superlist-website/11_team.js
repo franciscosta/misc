@@ -103,11 +103,13 @@ cells.forEach(cell => {
 
   const currentName = names.pop();
 
-  cell.innerHTML = `
-  <video autoplay muted loop playsinline class="careers23-team-video">
-    <source src="${team[currentName]['mp4']}" type="video/mp4">
-  </video>
-  `;
+  if (team[currentName]['mp4']) {
+    cell.innerHTML = `
+    <video autoplay muted loop playsinline class="careers23-team-video">
+      <source src="${team[currentName]['mp4']}" type="video/mp4">
+    </video>
+    `;
+  }
 
 });
 
