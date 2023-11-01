@@ -58,7 +58,10 @@ function addClickEvents() {
   widgetUI.closeButton.addEventListener('click', collapseWidget);  
 
   // 2. Adds the same functionality to the huge download at the bottom of the page
-  hugeDownloadButon.addEventListener('click', expandWidget);
+
+  if (hugeDownloadButon) {
+    hugeDownloadButon.addEventListener('click', expandWidget);
+  }
   
 }
 
