@@ -1,35 +1,26 @@
-document.addEventListener("DOMContentLoaded", function() {
-  try {
-    var button = document.getElementById('form-button');
-    if (!button) {
-      throw new Error("Button with id 'form-button' not found.");
-    }
 
-    button.addEventListener("click", function () {
-      var rect = button.getBoundingClientRect();
-      console.log(rect.top, rect.left);
-      var ycoordinate = rect.top;
-      var xcoordinate = rect.left;
-
-      emojisplosion({
-          emojis: ["🤣", "😇", "😛", "🤓"],
-          position: {
-              x: xcoordinate + 40,
-              y: ycoordinate,
-          },
-      });
-    });
-  } catch (error) {
-    console.error('An error occurred:', error);
-  }
+document.getElementById('form-button').addEventListener("click", function () {
+    
+  var rect = document.getElementById('form-button').getBoundingClientRect();
+  console.log(rect.top, rect.left);
+  var ycoordinate = rect.top;
+  var xcoordinate = rect.left;
+    
+  emojisplosion({
+      emojis: ["🤣", "😇", "😛", "🤓"],
+      position: {
+          x: xcoordinate + 40,
+          y: ycoordinate,
+      },
+  });
+  
 });
 
+  const observer = lozad('.lozad', {});
 
-const observer = lozad('.lozad', {});
+  observer.observe();
 
-observer.observe();
-
-// Mobile Image Slider
+  // Mobile Image Slider
 
 function ImagesliderApp(el) {
   this.el = el;
