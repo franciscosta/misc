@@ -6,7 +6,7 @@ function updateButtonLink() {
   const defaultUrl = 'https://app.superlist.com';
 
   // Find the link button by its class
-  const linkButton = document.querySelector('.s23-button .s23-hide-on-desktop');
+  const linkButton = document.querySelector('.s23-button.s23-hide-on-desktop');
 
   // Check the platform and update the href attribute
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
