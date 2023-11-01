@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   );
 
   setupDarkModeImageSwitcher(
-    '.s23-superlist-logo-link img',
+    '.s23-logo-top',
     'https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/650364790413cd1127e7e26b_Superlist%20logo.svg',
     'https://uploads-ssl.webflow.com/625593a881b8ebd169835ca5/654191f437e421437154f98b_logo%20light.svg',
   );
