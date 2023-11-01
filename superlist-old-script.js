@@ -21,7 +21,7 @@ document.getElementById('form-button').addEventListener("click", function () {
 
   // Mobile Image Slider
 
-  function ImagesliderApp(el) {
+function ImagesliderApp(el) {
   this.el = el;
 
   el.addEventListener("mousemove", updateSlider.bind(this));
@@ -30,26 +30,26 @@ document.getElementById('form-button').addEventListener("click", function () {
 }
 
 function updateSlider(e) {
-const rightImageContainer = this.el.querySelector(".hero-wrapper");
-const {
-  left,
-  width
-} = rightImageContainer.getBoundingClientRect();
-const pageX = e.type == "mousemove" ? e.pageX : e.changedTouches[0].pageX;
-const position = ((pageX - left) / width) * 100;
+  const rightImageContainer = this.el.querySelector(".hero-wrapper");
+  const {
+    left,
+    width
+  } = rightImageContainer.getBoundingClientRect();
+  const pageX = e.type == "mousemove" ? e.pageX : e.changedTouches[0].pageX;
+  const position = ((pageX - left) / width) * 100;
 
-if (position < 100 && position > 0) {
-  this.el.querySelector(
-    ".hero-clipping-wrapper"
-  ).style.width = `${position}%`;
-  this.el.querySelector(".handlebar_wrapper").style.left = `${position}%`;
-}
+  if (position < 100 && position > 0) {
+    this.el.querySelector(
+      ".hero-clipping-wrapper"
+    ).style.width = `${position}%`;
+    this.el.querySelector(".handlebar_wrapper").style.left = `${position}%`;
+  }
 }
 
 var hero = document.getElementById("hero-section");
 
 setTimeout(function() {
-ImagesliderApp(hero);
+  ImagesliderApp(hero);
 }, 4000)
 
 
@@ -67,45 +67,46 @@ var links4 = ".cc-links-section-4";
 
 // define loop - cycle through all tabs
 function tabLoop(tabsMenu, tabsLink) {
-tabTimeout = setTimeout(function () {
-  var $next = $(tabsMenu).children(".w--current:first").next();
+  tabTimeout = setTimeout(function () {
+    var $next = $(tabsMenu).children(".w--current:first").next();
 
-  if ($next.length) {
-    $next.click(); // click resets timeout, so no need for interval
-  } else {
-    $(`${tabsLink}:first`).click();
-  }
-}, 10000); // 10 second tab loop
+    if ($next.length) {
+      $next.click(); // click resets timeout, so no need for interval
+    } else {
+      $(`${tabsLink}:first`).click();
+    }
+  }, 10000); // 10 second tab loop
 }
 
 // reset timeout if a tab is clicked
 $(".cc-links-section-1").click(function () {
-clearTimeout(tabTimeout);
-tabLoop(menu1, links1);
+  clearTimeout(tabTimeout);
+  tabLoop(menu1, links1);
 });
 $(".cc-links-section-2").click(function () {
-clearTimeout(tabTimeout);
-tabLoop(menu2, links2);
+  clearTimeout(tabTimeout);
+  tabLoop(menu2, links2);
 });
 $(".cc-links-section-3").click(function () {
-clearTimeout(tabTimeout);
-tabLoop(menu3, links3);
+  clearTimeout(tabTimeout);
+  tabLoop(menu3, links3);
 });
 $(".cc-links-section-4").click(function () {
-clearTimeout(tabTimeout);
-tabLoop(menu4, links4);
+  clearTimeout(tabTimeout);
+  tabLoop(menu4, links4);
 });
 
 var tabs1Observer = new IntersectionObserver(
-function (entries) {
-  if (entries[0]["isIntersecting"] === true) {
-    clearTimeout(tabTimeout);
-    tabLoop(menu1, links1);
-  } else {
-    clearTimeout(tabTimeout);
-  }
-},
-{ threshold: [0.5] }
+
+  function (entries) {
+    if (entries[0]["isIntersecting"] === true) {
+      clearTimeout(tabTimeout);
+      tabLoop(menu1, links1);
+    } else {
+      clearTimeout(tabTimeout);
+    }
+  },
+  { threshold: [0.5] }
 );
 
 tabs1Observer.observe(document.querySelector("#section-1_grid"));
@@ -113,13 +114,13 @@ tabs1Observer.observe(document.querySelector("#section-1_grid"));
 var tabs2Observer = new IntersectionObserver(
 function (entries) {
   if (entries[0]["isIntersecting"] === true) {
-    clearTimeout(tabTimeout);
-    tabLoop(menu2, links2);
-  } else {
-    clearTimeout(tabTimeout);
-  }
-},
-{ threshold: [0.5] }
+      clearTimeout(tabTimeout);
+      tabLoop(menu2, links2);
+    } else {
+      clearTimeout(tabTimeout);
+    }
+  },
+  { threshold: [0.5] }
 );
 
 tabs2Observer.observe(document.querySelector("#section-2_grid"));
@@ -127,13 +128,13 @@ tabs2Observer.observe(document.querySelector("#section-2_grid"));
 var tabs3Observer = new IntersectionObserver(
 function (entries) {
   if (entries[0]["isIntersecting"] === true) {
-    clearTimeout(tabTimeout);
-    tabLoop(menu3, links3);
-  } else {
-    clearTimeout(tabTimeout);
-  }
-},
-{ threshold: [0.5] }
+      clearTimeout(tabTimeout);
+      tabLoop(menu3, links3);
+    } else {
+      clearTimeout(tabTimeout);
+    }
+  },
+  { threshold: [0.5] }
 );
 
 tabs3Observer.observe(document.querySelector("#section-3_grid"));
@@ -141,13 +142,13 @@ tabs3Observer.observe(document.querySelector("#section-3_grid"));
 var tabs4Observer = new IntersectionObserver(
 function (entries) {
   if (entries[0]["isIntersecting"] === true) {
-    clearTimeout(tabTimeout);
-    tabLoop(menu4, links4);
-  } else {
-    clearTimeout(tabTimeout);
-  }
-},
-{ threshold: [0.5] }
+      clearTimeout(tabTimeout);
+      tabLoop(menu4, links4);
+    } else {
+      clearTimeout(tabTimeout);
+    }
+  },
+  { threshold: [0.5] }
 );
 
 tabs4Observer.observe(document.querySelector("#section-4_grid"));
