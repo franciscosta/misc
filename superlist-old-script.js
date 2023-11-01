@@ -1,17 +1,23 @@
-
-document.getElementById('form-button').addEventListener("click", function () {
+document.addEventListener("DOMContentLoaded", function() {
   try {
-    var rect = document.getElementById('form-button').getBoundingClientRect();
-    console.log(rect.top, rect.left);
-    var ycoordinate = rect.top;
-    var xcoordinate = rect.left;
+    var button = document.getElementById('form-button');
+    if (!button) {
+      throw new Error("Button with id 'form-button' not found.");
+    }
 
-    emojisplosion({
-        emojis: ["🤣", "😇", "😛", "🤓"],
-        position: {
-            x: xcoordinate + 40,
-            y: ycoordinate,
-        },
+    button.addEventListener("click", function () {
+      var rect = button.getBoundingClientRect();
+      console.log(rect.top, rect.left);
+      var ycoordinate = rect.top;
+      var xcoordinate = rect.left;
+
+      emojisplosion({
+          emojis: ["🤣", "😇", "😛", "🤓"],
+          position: {
+              x: xcoordinate + 40,
+              y: ycoordinate,
+          },
+      });
     });
   } catch (error) {
     console.error('An error occurred:', error);
