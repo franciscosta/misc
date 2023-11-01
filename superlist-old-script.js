@@ -1,33 +1,33 @@
 
-// document.getElementById('form-button').addEventListener("click", function () {
+document.getElementById('form-button').addEventListener("click", function () {
     
-//   var rect = document.getElementById('form-button').getBoundingClientRect();
-//   console.log(rect.top, rect.left);
-//   var ycoordinate = rect.top;
-//   var xcoordinate = rect.left;
+  var rect = document.getElementById('form-button').getBoundingClientRect();
+  console.log(rect.top, rect.left);
+  var ycoordinate = rect.top;
+  var xcoordinate = rect.left;
     
-//     emojisplosion({
-//         emojis: ["🤣", "😇", "😛", "🤓"],
-//         position: {
-//             x: xcoordinate + 40,
-//             y: ycoordinate,
-//         },
-//     });
-//   });
+    emojisplosion({
+        emojis: ["🤣", "😇", "😛", "🤓"],
+        position: {
+            x: xcoordinate + 40,
+            y: ycoordinate,
+        },
+    });
+  });
 
-//   const observer = lozad('.lozad', {});
+  const observer = lozad('.lozad', {});
 
-//   observer.observe();
+  observer.observe();
 
-//   // Mobile Image Slider
+  // Mobile Image Slider
 
-//   function ImagesliderApp(el) {
-//   this.el = el;
+  function ImagesliderApp(el) {
+  this.el = el;
 
-//   el.addEventListener("mousemove", updateSlider.bind(this));
-//   el.addEventListener("touchstart", updateSlider.bind(this));
-//   el.addEventListener("touchmove", updateSlider.bind(this));
-// }
+  el.addEventListener("mousemove", updateSlider.bind(this));
+  el.addEventListener("touchstart", updateSlider.bind(this));
+  el.addEventListener("touchmove", updateSlider.bind(this));
+}
 
 function updateSlider(e) {
 const rightImageContainer = this.el.querySelector(".hero-wrapper");
