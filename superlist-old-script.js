@@ -1,11 +1,11 @@
 
 document.getElementById('form-button').addEventListener("click", function () {
-    
-  var rect = document.getElementById('form-button').getBoundingClientRect();
-  console.log(rect.top, rect.left);
-  var ycoordinate = rect.top;
-  var xcoordinate = rect.left;
-    
+  try {
+    var rect = document.getElementById('form-button').getBoundingClientRect();
+    console.log(rect.top, rect.left);
+    var ycoordinate = rect.top;
+    var xcoordinate = rect.left;
+
     emojisplosion({
         emojis: ["🤣", "😇", "😛", "🤓"],
         position: {
@@ -13,13 +13,17 @@ document.getElementById('form-button').addEventListener("click", function () {
             y: ycoordinate,
         },
     });
-  });
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
 
-  const observer = lozad('.lozad', {});
 
-  observer.observe();
+const observer = lozad('.lozad', {});
 
-  // Mobile Image Slider
+observer.observe();
+
+// Mobile Image Slider
 
 function ImagesliderApp(el) {
   this.el = el;
