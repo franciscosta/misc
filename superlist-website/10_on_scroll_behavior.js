@@ -82,7 +82,7 @@ function firstSlideReveal(deviceWidth) {
 
       setTimeout(() => {
         innerSectionImage.style.opacity = '1';
-      }, 100);
+      }, 200);
 
       hero.style.backgroundColor = '#ffffff';
     } else {
