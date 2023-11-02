@@ -78,7 +78,7 @@ function firstSlideReveal(deviceWidth) {
       firstSlide.style.borderRadius = borderRadius;
       firstSlide.style.marginTop = margintop;
 
-      innerSection.style.backgroundColor = '#F84F39';
+      innerSection.style.backgroundColor = '#6b66da';
       innerSectionImage.style.opacity = '1';
 
       hero.style.backgroundColor = '#ffffff';
