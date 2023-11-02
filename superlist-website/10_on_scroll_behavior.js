@@ -79,7 +79,10 @@ function firstSlideReveal(deviceWidth) {
       firstSlide.style.marginTop = margintop;
 
       innerSection.style.backgroundColor = '#6b66da';
-      innerSectionImage.style.opacity = '1';
+
+      setTimeout(() => {
+        innerSectionImage.style.opacity = '1';
+      }, 100);
 
       hero.style.backgroundColor = '#ffffff';
     } else {
